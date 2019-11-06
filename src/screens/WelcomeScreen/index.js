@@ -51,7 +51,7 @@ const WelcomeScreen = ({componentId}) => {
               content="회원가입"
               onPress={this.navigateToSignUp}
             />
-            <FullWidthButton invert content="카카오로 회원가입" />
+            {/* <FullWidthButton invert content="카카오로 회원가입" /> */}
 
             {/* <SizeCardAddButton onPressAdd={this.navigateToInfo1} /> */}
           </View>

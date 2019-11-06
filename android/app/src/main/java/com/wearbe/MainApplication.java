@@ -4,12 +4,15 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.BV.LinearGradient.LinearGradientPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
+import com.BV.LinearGradient.LinearGradientPackage;
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,7 +40,10 @@ public class MainApplication extends NavigationApplication {
     }
 
     protected List<ReactPackage> getPackages(){
-        return Arrays.<ReactPackage>asList();
+        return Arrays.<ReactPackage>asList(
+                new AsyncStoragePackage(),
+                new LinearGradientPackage()
+        );
     }
 
     @Override

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
   Text,
@@ -10,7 +10,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './style';
-import { gradientPreset } from '../../constants';
+import {gradientPreset} from '../../constants';
 
 export class FullWidthButton extends Component {
   constructor(props) {
@@ -19,7 +19,8 @@ export class FullWidthButton extends Component {
   }
 
   render() {
-    const Button = Platform.OS === 'ios' ? TouchableOpacity : TouchableWithoutFeedback;
+    const Button =
+      Platform.OS === 'ios' ? TouchableOpacity : TouchableWithoutFeedback;
     const {
       content,
       invert,
@@ -34,33 +35,22 @@ export class FullWidthButton extends Component {
         <View
           style={[
             invert ? styles.disabledInvertContainer : styles.disabledContainer,
-            { height },
-          ]}
-        >
-          {icon ? (
-            <Icon
-              style={invert ? styles.invertIcon : styles.defaultIcon}
-              name={icon}
-            />
-          ) : null}
+            {height},
+          ]}>
           <Text style={styles.invertText}>{content}</Text>
         </View>
       );
     }
     if (invert) {
       return (
-        <View style={[styles.invertContainer, { height }]}>
+        <View style={[styles.invertContainer, {height}]}>
           <Button
             onPress={onPress}
             style={{
               width: '100%',
               justifyContent: 'center',
               alignItems: 'center',
-            }}
-          >
-            {icon ? (
-              <Icon size={16} name={icon} style={styles.defaultIcon} />
-            ) : null}
+            }}>
             <Text style={styles.invertText}>{content}</Text>
           </Button>
         </View>
@@ -68,18 +58,14 @@ export class FullWidthButton extends Component {
     }
     if (transparent) {
       return (
-        <View style={[styles.transparentContainer, { height }]}>
+        <View style={[styles.transparentContainer, {height}]}>
           <Button
             onPress={onPress}
             style={{
               width: '100%',
               justifyContent: 'center',
               alignItems: 'center',
-            }}
-          >
-            {icon ? (
-              <Icon size={16} name={icon} style={styles.defaultIcon} />
-            ) : null}
+            }}>
             <Text style={styles.defaultText}>{content}</Text>
           </Button>
         </View>
@@ -87,33 +73,23 @@ export class FullWidthButton extends Component {
     }
     return (
       <LinearGradient
-        style={[styles.defaultContainer, { height }]}
+        style={[styles.defaultContainer, {height}]}
         colors={gradientPreset}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-      >
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 0}}>
         <Button
           onPress={onPress}
           style={{
             width: '100%',
             justifyContent: 'center',
             alignItems: 'center',
-          }}
-        >
+          }}>
           {icon ? (
             <Icon size={16} name={icon} style={styles.defaultIcon} />
           ) : null}
           <Text style={styles.defaultText}>{content}</Text>
         </Button>
       </LinearGradient>
-      // <Button >
-      //   <AnimatedGradient
-      //     customColors={gradientPreset}
-      //     speed={gradientSpeed}
-      //   >
-
-    //   </AnimatedGradient>
-    // </Button>
     );
   }
 }
