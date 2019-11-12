@@ -20,7 +20,7 @@ function convert(millis) {
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
-const PhoneVerifyScreen = () => {
+const PhoneVerifyScreen = ({ componentId }) => {
   const [isSent, setIsSent] = useState(false);
   const [phone, setPhone] = useState('');
   const [timeLeft, start] = useCountDown(initialTime, interval);
@@ -58,6 +58,21 @@ const PhoneVerifyScreen = () => {
     setIsSent(true);
   };
 
+  const navigateToPassword = () => {
+    Navigation.push(componentId, {
+      component: {
+        name: 'wearbe.password',
+        options: {
+          topBar: {
+            title: {
+              text: '비밀번호',
+            },
+          },
+        },
+      },
+    });
+  };
+
   const renderCheck = () => (
     <Wrapper>
       <Header>
@@ -86,9 +101,9 @@ const PhoneVerifyScreen = () => {
     <Wrapper>
       <Header>
         <RegisterForm
-          phone
           label="인증번호"
           loading={checking}
+          keyboardType="numeric"
           placeholder="인증번호 4자리를 입력해주세요."
           onChangeText={onChangeVerify}
           value={verifyNumber}
@@ -102,7 +117,8 @@ const PhoneVerifyScreen = () => {
       <Footer>
         <FullWidthButton
           content="다음(2/4)"
-          disabled={phone === '' || overlap}
+          disabled={verifyNumber === '' || verifyNumber.length > 4}
+          onPress={navigateToPassword}
         />
       </Footer>
     </Wrapper>

@@ -26,6 +26,7 @@ export class RegisterForm extends Component {
       autoFocus,
       defaultRef,
       invert,
+      secure,
     } = this.props;
 
     return (
@@ -40,9 +41,9 @@ export class RegisterForm extends Component {
         <View style={{ flexDirection: 'row' }}>
           <Text
             style={{
-              color: invert ? 'white' : theme.darkGray,
-              fontSize: 16,
-              fontWeight: '600',
+              color: invert ? 'white' : theme.dimGray,
+              fontSize: 14,
+              fontWeight: '800',
               marginBottom: 10,
             }}
           >
@@ -77,6 +78,7 @@ export class RegisterForm extends Component {
             autoCorrect={false}
             keyboardType={keyboardType}
             style={invert ? styles.whiteInput : styles.input}
+            secureTextEntry={secure}
           />
         )}
 
@@ -102,6 +104,7 @@ RegisterForm.propTypes = {
   autoFocus: PropTypes.bool,
   defaultRef: PropTypes.object,
   invert: PropTypes.bool,
+  secure: PropTypes.bool,
 };
 
 RegisterForm.defaultProps = {

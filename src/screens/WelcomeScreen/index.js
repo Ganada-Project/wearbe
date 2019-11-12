@@ -18,6 +18,7 @@ const WelcomeScreen = ({ componentId }) => {
             title: {
               text: '번호인증',
             },
+            headerTitleStyle: { alignSelf: 'center' },
           },
         },
       },

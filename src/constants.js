@@ -8,6 +8,7 @@ export const theme = {
   whiteColor: '#ffffff',
   grayColor: '#dee0e3',
   darkGray: '#88929c',
+  dimGray: '#696969',
   textColor: '#111314',
   guideColor: '#14ff1e',
   backgroundColor: '#f9f7f9',

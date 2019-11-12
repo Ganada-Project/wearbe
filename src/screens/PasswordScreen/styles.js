@@ -7,7 +7,7 @@ export const Wrapper = styled.View`
 `;
 
 export const Header = styled.View`
-  flex: 3;
+  flex: 3.2;
   flex-direction: column;
 `;
 export const Footer = styled.View`
@@ -17,7 +17,7 @@ export const Footer = styled.View`
 `;
 
 export const InfoText = styled.Text`
-  margin-top: 20px;
+  margin-top: 10px;
   color: ${theme.darkGray};
   font-size: 12px;
 `;
