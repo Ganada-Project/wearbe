@@ -19,3 +19,15 @@ export const TRY_SIGN_OUT_FAIL = 'WearBe/App/TRY_SIGN_OUT_FAIL';
 
 export const GET_FCM_TOKEN_SUCCESS = 'WearBe/App/GET_FCM_TOKEN_SUCCESS';
 export const GET_FCM_TOKEN_FAIL = 'WearBe/App/GET_FCM_TOKEN_FAIL';
+
+export const VERIFY_PHONE = {
+  REQUEST: 'WearBe/PhoneVerify/VERIFY_PHONE_REQUEST',
+  SUCCESS: 'WearBe/PhoneVerify/VERIFY_PHONE_SUCCESS',
+  FAIL: 'WearBe/PhoneVerify/VERIFY_PHONE_FAIL',
+};
+
+export const CHECK_PHONE = {
+  REQUEST: 'WearBe/PhoneVerify/CHECK_PHONE_REQUEST',
+  SUCCESS: 'WearBe/PhoneVerify/CHECK_PHONE_SUCCESS',
+  FAIL: 'WearBe/PhoneVerify/CHECK_PHONE_FAIL',
+};

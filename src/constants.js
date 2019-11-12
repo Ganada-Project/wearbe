@@ -13,6 +13,10 @@ export const theme = {
   backgroundColor: '#f9f7f9',
 };
 
+export const layout = {
+  padding: '30px 25px',
+};
+
 export const BaseHeightOffset = {
   head: 120,
   foot: 550,

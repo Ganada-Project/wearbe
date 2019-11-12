@@ -15,10 +15,28 @@
  *    }
  */
 
-import {FETCH_USER_REQUESTING} from '../constants/authConstants';
+import {
+  FETCH_USER_REQUESTING,
+  CHECK_PHONE,
+  VERIFY_PHONE,
+} from '../constants/authConstants';
 
 export function fetchUserAction() {
   return {
     type: FETCH_USER_REQUESTING,
+  };
+}
+
+export function checkPhoneAction({ number }) {
+  return {
+    type: CHECK_PHONE.REQUEST,
+    number,
+  };
+}
+
+export function verifyPhoneAction({ number }) {
+  return {
+    type: VERIFY_PHONE.REQUEST,
+    number,
   };
 }

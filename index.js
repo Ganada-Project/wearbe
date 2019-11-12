@@ -2,22 +2,22 @@
  * @format
  */
 import React from 'react';
-import {Navigation} from 'react-native-navigation';
-import {AppRegistry} from 'react-native';
+import { Navigation } from 'react-native-navigation';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import createSagaMiddleware from 'redux-saga';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 import App from './App';
-import {name as appName} from './app.json';
 
 // Imports: Dependencies
-import {createStore, applyMiddleware} from 'redux';
-import {composeWithDevTools} from 'redux-devtools-extension';
-import createSagaMiddleware from 'redux-saga';
+
 // Imports: Redux Root Reducer
 import rootReducer from './src/reducers';
 // Imports: Redux Root Saga
-import {rootSaga} from './src/sagas';
-import {Provider} from 'react-redux';
+import { rootSaga } from './src/sagas';
 
 import WelcomeScreen from './src/screens/WelcomeScreen';
+import PhoneVerifyScreen from './src/screens/PhoneVerifyScreen';
 // Middleware: Redux Saga
 const sagaMiddleware = createSagaMiddleware();
 // Redux: Store
@@ -35,11 +35,20 @@ function ReduxProvider(Component) {
   );
 }
 
-Navigation.registerComponent(`wearbe.app`, () => ReduxProvider(App), () => App);
+Navigation.registerComponent(
+  `wearbe.app`,
+  () => ReduxProvider(App),
+  () => App,
+);
 Navigation.registerComponent(
   `wearbe.welcome`,
   () => ReduxProvider(WelcomeScreen),
   () => WelcomeScreen,
+);
+Navigation.registerComponent(
+  `wearbe.phoneVerify`,
+  () => ReduxProvider(PhoneVerifyScreen),
+  () => PhoneVerifyScreen,
 );
 
 Navigation.events().registerAppLaunchedListener(() => {

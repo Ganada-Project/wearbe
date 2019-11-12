@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingBottom: 10,
     color: theme.textColor,
+    fontWeight: '900',
   },
   whiteInput: {
     borderBottomWidth: 1,
@@ -18,6 +19,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingLeft: 5,
     paddingBottom: 10,
+    fontWeight: '900',
     color: 'white',
   },
 });

@@ -27,6 +27,7 @@ export class RegisterForm extends Component {
       defaultRef,
       invert,
     } = this.props;
+
     return (
       <View
         style={{
@@ -39,9 +40,10 @@ export class RegisterForm extends Component {
         <View style={{ flexDirection: 'row' }}>
           <Text
             style={{
-              color: invert ? 'white' : theme.textColor,
+              color: invert ? 'white' : theme.darkGray,
               fontSize: 16,
-              fontWeight: '700',
+              fontWeight: '600',
+              marginBottom: 10,
             }}
           >
             {label}

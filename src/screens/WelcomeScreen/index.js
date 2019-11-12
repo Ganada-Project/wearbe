@@ -1,23 +1,30 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import {Text, View, Image, StatusBar} from 'react-native';
-import {Navigation} from 'react-native-navigation';
+import { Text, View, Image, StatusBar } from 'react-native';
+import { Navigation } from 'react-native-navigation';
 import AnimatedLinearGradient from 'react-native-animated-linear-gradient';
 import styles from './styles';
-import {FullWidthButton} from '../../components';
-import {gradientPreset, gradientSpeed} from '../../constants';
+import { FullWidthButton } from '../../components';
+import { gradientPreset, gradientSpeed } from '../../constants';
 import WaveLogoWhite from '../../assets/Logos/wave-logo-white.png';
 
-const WelcomeScreen = ({componentId}) => {
-  navigateToSignUp = () => {
+const WelcomeScreen = ({ componentId }) => {
+  const navigateToSignUp = () => {
     Navigation.push(componentId, {
       component: {
         name: 'wearbe.phoneVerify',
+        options: {
+          topBar: {
+            title: {
+              text: '번호인증',
+            },
+          },
+        },
       },
     });
   };
 
-  navigateToSignIn = () => {
+  const navigateToSignIn = () => {
     Navigation.push(componentId, {
       component: {
         name: 'wearbe.signIn',
@@ -30,7 +37,8 @@ const WelcomeScreen = ({componentId}) => {
       <StatusBar barStyle="light-content" />
       <AnimatedLinearGradient
         customColors={gradientPreset}
-        speed={gradientSpeed}>
+        speed={gradientSpeed}
+      >
         <View style={styles.container}>
           <View style={styles.header}>
             <Image style={styles.logo} source={WaveLogoWhite} />
@@ -44,12 +52,12 @@ const WelcomeScreen = ({componentId}) => {
             <FullWidthButton
               transparent
               content="로그인"
-              onPress={this.navigateToSignIn}
+              onPress={navigateToSignIn}
             />
             <FullWidthButton
               invert
               content="회원가입"
-              onPress={this.navigateToSignUp}
+              onPress={navigateToSignUp}
             />
             {/* <FullWidthButton invert content="카카오로 회원가입" /> */}
 

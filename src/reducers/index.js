@@ -1,5 +1,5 @@
 // Imports: Dependencies
-import {combineReducers} from 'redux-immutable';
+import { combineReducers } from 'redux-immutable';
 
 import globalReducer from './globalReducer';
 // Redux: Root Reducer
