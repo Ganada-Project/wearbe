@@ -9,6 +9,7 @@ import ItemFlatList from './ItemFlatList';
 import ContainerButton from './ContainerButton';
 import StepHeader from './StepHeader';
 import ColorBar from './ColorBar';
+import KeyboradWrapper from './KeyboardWrapper';
 export {
   FullWidthButton,
   RegisterForm,
@@ -21,4 +22,5 @@ export {
   ContainerButton,
   StepHeader,
   ColorBar,
+  KeyboradWrapper,
 };

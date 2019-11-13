@@ -19,11 +19,27 @@ import {
   FETCH_USER_REQUESTING,
   CHECK_PHONE,
   VERIFY_PHONE,
+  SIGN_UP,
+  CHECK_NICKNAME,
 } from '../constants/authConstants';
+
+export function signUpAction({ signUpObj }) {
+  return {
+    type: SIGN_UP.REQUEST,
+    signUpObj,
+  };
+}
 
 export function fetchUserAction() {
   return {
     type: FETCH_USER_REQUESTING,
+  };
+}
+
+export function checkNicknameAction({ nickname }) {
+  return {
+    type: CHECK_NICKNAME.REQUEST,
+    nickname,
   };
 }
 

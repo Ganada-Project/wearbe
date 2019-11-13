@@ -19,6 +19,7 @@ import { rootSaga } from './src/sagas';
 import WelcomeScreen from './src/screens/WelcomeScreen';
 import PhoneVerifyScreen from './src/screens/PhoneVerifyScreen';
 import PasswordScreen from './src/screens/PasswordScreen';
+import SignUpScreen from './src/screens/SignUpScreen';
 // Middleware: Redux Saga
 const sagaMiddleware = createSagaMiddleware();
 // Redux: Store
@@ -56,6 +57,11 @@ Navigation.registerComponent(
   `wearbe.password`,
   () => ReduxProvider(PasswordScreen),
   () => PasswordScreen,
+);
+Navigation.registerComponent(
+  `wearbe.signUp`,
+  () => ReduxProvider(SignUpScreen),
+  () => SignUpScreen,
 );
 
 Navigation.events().registerAppLaunchedListener(() => {

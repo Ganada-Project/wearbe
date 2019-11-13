@@ -13,6 +13,12 @@ export const FETCH_USER_REQUESTING = 'WearBe/App/FETCH_USER_REQUESTING';
 export const FETCH_USER_FAIL = 'WearBe/App/FETCH_USER_FAIL';
 export const FETCH_USER_SUCCESS = 'WearBe/App/FETCH_USER_SUCCESS';
 
+export const SIGN_UP = {
+  REQUEST: 'WearBe/SignUp/SIGN_UP_REQUEST',
+  SUCCESS: 'WearBe/SignUp/SIGN_UP_SUCCESS',
+  FAIL: 'WearBe/SignUp/SIGN_UP_FAIL',
+};
+
 export const TRY_SIGN_OUT = 'WearBe/App/TRY_SIGN_OUT';
 export const TRY_SIGN_OUT_SUCCESS = 'WearBe/App/TRY_SIGN_OUT_SUCCESS';
 export const TRY_SIGN_OUT_FAIL = 'WearBe/App/TRY_SIGN_OUT_FAIL';
@@ -30,4 +36,10 @@ export const CHECK_PHONE = {
   REQUEST: 'WearBe/PhoneVerify/CHECK_PHONE_REQUEST',
   SUCCESS: 'WearBe/PhoneVerify/CHECK_PHONE_SUCCESS',
   FAIL: 'WearBe/PhoneVerify/CHECK_PHONE_FAIL',
+};
+
+export const CHECK_NICKNAME = {
+  REQUEST: 'WearBe/SignUp/CHECK_NICKNAME_REQUEST',
+  SUCCESS: 'WearBe/SignUp/CHECK_NICKNAME_SUCCESS',
+  FAIL: 'WearBe/SignUp/CHECK_NICKNAME_FAIL',
 };

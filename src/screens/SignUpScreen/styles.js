@@ -17,7 +17,7 @@ export const Footer = styled.View`
 `;
 
 export const InfoText = styled.Text`
-  margin-top: 10px;
+  margin-top: 20px;
   color: ${theme.darkGray};
   font-size: 12px;
 `;

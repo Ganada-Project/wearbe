@@ -25,6 +25,7 @@ export class RegisterForm extends Component {
       phone,
       autoFocus,
       defaultRef,
+      phoneRef,
       invert,
       secure,
     } = this.props;
@@ -57,11 +58,10 @@ export class RegisterForm extends Component {
         </View>
         {phone ? (
           <TextInputMask
-            ref={ref => (this.myDateText = ref)} //eslint-disable-line
+            ref={phoneRef} //eslint-disable-line
             type="custom"
             keyboardType="numeric"
             value={phoneValue}
-            autoFocus={autoFocus}
             onChangeText={onChangePhoneText}
             style={invert ? styles.whiteInput : styles.input}
             options={{
@@ -73,7 +73,6 @@ export class RegisterForm extends Component {
             onChangeText={onChangeText}
             value={value}
             ref={defaultRef}
-            autoFocus={autoFocus}
             autoCapitalize="none"
             autoCorrect={false}
             keyboardType={keyboardType}
@@ -103,6 +102,7 @@ RegisterForm.propTypes = {
   keyboardType: PropTypes.string,
   autoFocus: PropTypes.bool,
   defaultRef: PropTypes.object,
+  phoneRef: PropTypes.object,
   invert: PropTypes.bool,
   secure: PropTypes.bool,
 };

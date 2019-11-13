@@ -50,7 +50,7 @@ function checkStatus(response) {
  *
  * @return {object}           The response data
  */
-export async function getRequest({url}) {
+export async function getRequest({ url }) {
   const headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ export async function getRequest({url}) {
     .then(parseJSON);
 }
 
-export async function postRequest({url, payload}) {
+export async function postRequest({ url, payload }) {
   const headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ export async function postRequest({url, payload}) {
     method: 'POST',
     headers,
     url,
-    data: {...payload},
+    data: { ...payload },
   };
 
   console.log(options);

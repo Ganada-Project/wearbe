@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createRef } from 'react';
 
 // react-native
-import { KeyboardAvoidingView, Platform } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Navigation } from 'react-native-navigation';
 import useCountDown from 'react-countdown-hook';
+import { useNavigationComponentDidAppear } from 'react-native-navigation-hooks';
 
 import { Wrapper, InfoText, Header, Footer } from './styles';
-import { RegisterForm, FullWidthButton } from '../../components';
+import {
+  RegisterForm,
+  FullWidthButton,
+  KeyboradWrapper,
+} from '../../components';
 import { checkPhoneAction } from '../../actions/authActions';
 
 const initialTime = 60 * 1000; // initial time in milliseconds, defaults to 60000
@@ -30,12 +34,14 @@ const PhoneVerifyScreen = ({ componentId }) => {
   const phoneVerify = global.get('phoneVerify');
   const checking = phoneVerify.get('checking');
   const overlap = phoneVerify.get('overlap');
-  const isIos = Platform.OS === 'ios';
   const timeLeftConverted = convert(timeLeft);
+  const phoneRef = createRef();
+  const verifyNumberRef = createRef();
 
   useEffect(() => {
     if (isSent) {
       start();
+      verifyNumberRef.current.focus(); //eslint-disable-line
     }
   }, [isSent]);
 
@@ -44,6 +50,13 @@ const PhoneVerifyScreen = ({ componentId }) => {
       setIsSent(false);
     }
   }, [timeLeft]);
+
+  // Listen events only for this screen (componentId)
+  useNavigationComponentDidAppear(() => {
+    if (phoneRef.current) {
+      phoneRef.current._inputElement.focus(); //eslint-disable-line
+    }
+  }, componentId);
 
   const onChangePhoneText = text => {
     setPhone(text);
@@ -69,6 +82,9 @@ const PhoneVerifyScreen = ({ componentId }) => {
             },
           },
         },
+        passProps: {
+          phone,
+        },
       },
     });
   };
@@ -83,6 +99,7 @@ const PhoneVerifyScreen = ({ componentId }) => {
           placeholder="휴대전화번호를 입력해주세요."
           onChangePhoneText={onChangePhoneText}
           phoneValue={phone}
+          phoneRef={phoneRef}
           errorText={overlap ? '이미 존재하는 전화번호입니다' : null}
         />
         <InfoText>입력하신 번호로 4자리 숫자가 발송됩니다.</InfoText>
@@ -107,6 +124,7 @@ const PhoneVerifyScreen = ({ componentId }) => {
           placeholder="인증번호 4자리를 입력해주세요."
           onChangeText={onChangeVerify}
           value={verifyNumber}
+          defaultRef={verifyNumberRef}
           errorText={overlap ? '이미 존재하는 전화번호입니다' : null}
         />
         <InfoText style={{ alignSelf: 'flex-end' }}>
@@ -125,14 +143,7 @@ const PhoneVerifyScreen = ({ componentId }) => {
   );
 
   return (
-    <KeyboardAvoidingView
-      behavior={isIos ? 'padding' : null}
-      enabled
-      style={{ flex: 1 }}
-      keyboardVerticalOffset={0}
-    >
-      {isSent ? renderVerify() : renderCheck()}
-    </KeyboardAvoidingView>
+    <KeyboradWrapper>{isSent ? renderVerify() : renderCheck()}</KeyboradWrapper>
   );
 };
 
