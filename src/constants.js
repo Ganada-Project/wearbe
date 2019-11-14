@@ -15,7 +15,7 @@ export const theme = {
 };
 
 export const layout = {
-  padding: '30px 25px',
+  padding: '30px 25px 0px 25px',
 };
 
 export const BaseHeightOffset = {

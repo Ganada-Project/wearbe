@@ -42,7 +42,7 @@ const resetToWelcome = () => {
 const getUserToken = async () => {
   let idToken;
   try {
-    idToken = await AsyncStorage.getItem('wave.idToken');
+    idToken = await AsyncStorage.getItem('wearbe.idToken');
   } catch (error) {
     // Error retrieving data
     idToken = null;
@@ -54,6 +54,8 @@ export function* fetchUserFlow({ token }) {
   let user;
   const url = `${API_URL}/user/me`;
   const idToken = yield getUserToken() || token;
+  console.log(idToken);
+
   // yield put({type: GET_FCM_TOKEN_SUCCESS, fcmToken});
   if (!idToken || idToken === null || idToken === undefined) {
     user = { result: null };
@@ -80,6 +82,7 @@ export function* fetchUserFlow({ token }) {
       //   },
       // });
     } catch (error) {
+      console.log(error);
       user = { result: null };
       // yield resetToWelcome();
       yield put({ type: FETCH_USER_FAIL, error });
@@ -138,13 +141,15 @@ function* registerUserSaga(action) {
   try {
     const result = yield call(postRequest, { url, payload });
     yield put({ type: SIGN_UP.SUCCESS, payload: { result } });
+    console.log('register');
+    console.log(result);
     yield AsyncStorage.setItem('wearbe.idToken', result.token);
     yield fetchUserFlow({ token: result.token });
-    yield Navigation.push(signUpObj.componentId, {
-      component: {
-        name: 'wave.home',
-      },
-    });
+    // yield Navigation.push(signUpObj.componentId, {
+    //   component: {
+    //     name: 'wearbe.home',
+    //   },
+    // });
   } catch (error) {
     console.log(error);
     yield put({ type: SIGN_UP.FAIL, error });

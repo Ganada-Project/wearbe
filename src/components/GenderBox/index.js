@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {
-  TouchableOpacity, Dimensions, Text, View, Image,
-} from 'react-native';
+import { TouchableOpacity, Dimensions, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './style';
 import { theme } from '../../constants';
@@ -14,15 +12,7 @@ export class GenderBox extends Component {
   }
 
   render() {
-    const {
-      id,
-      selectedGenderId,
-      name,
-      icon,
-      iconWhite,
-      onPress,
-      divider,
-    } = this.props;
+    const { id, selectedGenderId, name, onPress, divider } = this.props;
 
     return (
       <TouchableOpacity
@@ -56,8 +46,6 @@ GenderBox.propTypes = {
   id: PropTypes.number,
   selectedGenderId: PropTypes.number,
   name: PropTypes.string,
-  icon: PropTypes.number,
-  iconWhite: PropTypes.number,
   onPress: PropTypes.func,
   divider: PropTypes.number,
 };

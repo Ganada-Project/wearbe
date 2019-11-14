@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 const getUserToken = async () => {
   let idToken;
   try {
-    idToken = await AsyncStorage.getItem('wave.idToken');
+    idToken = await AsyncStorage.getItem('wearbe.idToken');
   } catch (error) {
     // Error retrieving data
     idToken = null;
