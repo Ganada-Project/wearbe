@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { layout, theme } from '../../constants';
 
 export const Wrapper = styled.View`
-  padding: ${layout.padding};
+  padding: ${layout.keyboardPadding};
   flex: 1;
 `;
 

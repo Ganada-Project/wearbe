@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.dylanvann.fastimage.FastImageViewPackage;
+import com.mkuczera.RNReactNativeHapticFeedbackPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
@@ -42,7 +44,9 @@ public class MainApplication extends NavigationApplication {
     protected List<ReactPackage> getPackages(){
         return Arrays.<ReactPackage>asList(
                 new AsyncStoragePackage(),
-                new LinearGradientPackage()
+                new LinearGradientPackage(),
+                new RNReactNativeHapticFeedbackPackage(),
+                new FastImageViewPackage()
         );
     }
 

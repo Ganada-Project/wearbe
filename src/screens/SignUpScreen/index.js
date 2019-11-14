@@ -9,6 +9,7 @@ import {
   FullWidthButton,
   GenderBox,
   BarLoading,
+  KeyboradWrapper,
 } from '../../components';
 import { checkNicknameAction, signUpAction } from '../../actions/authActions';
 
@@ -64,46 +65,48 @@ const SignUpScreen = ({ componentId, phone, password }) => {
     dispatch(signUpAction({ signUpObj }));
   };
   return (
-    <Wrapper>
-      {signUpLoading ? (
-        <BarLoading />
-      ) : (
-        <>
-          <Header>
-            <RegisterForm
-              label="닉네임"
-              value={nickname}
-              defaultRef={nicknameRef}
-              onChangeText={onChangeNickname}
-              loading={checking}
-              errorText={overlap ? '닉네임이 존재합니다' : null}
-            />
-            <RegisterForm
-              label="나이"
-              value={age}
-              defaultRef={ageRef}
-              keyboradType="numeric"
-              onChangeText={onChangeAge}
-            />
-            <View style={{ flexDirection: 'row', marginTop: 20 }}>
-              {genderData.map(gender => (
-                <GenderBox
-                  onPress={handleGender}
-                  id={gender.id}
-                  selectedGenderId={selectedGenderId}
-                  key={`gender-${gender.id}`}
-                  name={gender.name}
-                  divider={6.5}
-                />
-              ))}
-            </View>
-          </Header>
-          <Footer>
-            <FullWidthButton content="가입하기" onPress={onPressSignup} />
-          </Footer>
-        </>
-      )}
-    </Wrapper>
+    <KeyboradWrapper>
+      <Wrapper>
+        {signUpLoading ? (
+          <BarLoading />
+        ) : (
+          <>
+            <Header>
+              <RegisterForm
+                label="닉네임"
+                value={nickname}
+                defaultRef={nicknameRef}
+                onChangeText={onChangeNickname}
+                loading={checking}
+                errorText={overlap ? '닉네임이 존재합니다' : null}
+              />
+              <RegisterForm
+                label="나이"
+                value={age}
+                defaultRef={ageRef}
+                keyboradType="numeric"
+                onChangeText={onChangeAge}
+              />
+              <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                {genderData.map(gender => (
+                  <GenderBox
+                    onPress={handleGender}
+                    id={gender.id}
+                    selectedGenderId={selectedGenderId}
+                    key={`gender-${gender.id}`}
+                    name={gender.name}
+                    divider={6.5}
+                  />
+                ))}
+              </View>
+            </Header>
+            <Footer>
+              <FullWidthButton content="가입하기" onPress={onPressSignup} />
+            </Footer>
+          </>
+        )}
+      </Wrapper>
+    </KeyboradWrapper>
   );
 };
 

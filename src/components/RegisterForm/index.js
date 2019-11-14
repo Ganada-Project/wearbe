@@ -107,7 +107,6 @@ RegisterForm.propTypes = {
 
 RegisterForm.defaultProps = {
   keyboardType: 'default',
-  autoFocus: true,
 };
 
 export default RegisterForm;

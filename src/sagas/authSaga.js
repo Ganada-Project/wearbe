@@ -54,7 +54,6 @@ export function* fetchUserFlow({ token }) {
   let user;
   const url = `${API_URL}/user/me`;
   const idToken = yield getUserToken() || token;
-  console.log(idToken);
 
   // yield put({type: GET_FCM_TOKEN_SUCCESS, fcmToken});
   if (!idToken || idToken === null || idToken === undefined) {
@@ -68,19 +67,19 @@ export function* fetchUserFlow({ token }) {
         type: FETCH_USER_SUCCESS,
         payload: { user, idToken },
       });
-      // yield Navigation.setRoot({
-      //   root: {
-      //     stack: {
-      //       children: [
-      //         {
-      //           component: {
-      //             name: 'wearbe.home',
-      //           },
-      //         },
-      //       ],
-      //     },
-      //   },
-      // });
+      yield Navigation.setRoot({
+        root: {
+          stack: {
+            children: [
+              {
+                component: {
+                  name: 'wearbe.home',
+                },
+              },
+            ],
+          },
+        },
+      });
     } catch (error) {
       console.log(error);
       user = { result: null };
@@ -93,7 +92,7 @@ export function* fetchUserFlow({ token }) {
 
 function* verifyPhoneNumberSaga(action) {
   const { number } = action.payload;
-  const url = `${API_URL}/auth/check/user/phone`;
+  const url = `${API_URL}/auth/check/user/phone?phone=${number}`;
   try {
     const result = yield call(getRequest, { url });
     yield put({ type: VERIFY_PHONE.SUCCESS, payload: { result } });

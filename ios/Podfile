@@ -43,6 +43,10 @@ target 'wearbe' do
 
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
+  pod 'RNReactNativeHapticFeedback', :path => '../node_modules/react-native-haptic-feedback'
+
+  pod 'RNFastImage', :path => '../node_modules/react-native-fast-image'
+
   target 'wearbeTests' do
     inherit! :search_paths
     # Pods for testing

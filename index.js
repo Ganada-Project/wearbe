@@ -1,6 +1,7 @@
 /**
  * @format
  */
+/* eslint-disable */
 import React from 'react';
 import { Navigation } from 'react-native-navigation';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -20,6 +21,7 @@ import WelcomeScreen from './src/screens/WelcomeScreen';
 import PhoneVerifyScreen from './src/screens/PhoneVerifyScreen';
 import PasswordScreen from './src/screens/PasswordScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
+import HomeScreen from './src/screens/HomeScreen';
 // Middleware: Redux Saga
 const sagaMiddleware = createSagaMiddleware();
 // Redux: Store
@@ -62,6 +64,11 @@ Navigation.registerComponent(
   `wearbe.signUp`,
   () => ReduxProvider(SignUpScreen),
   () => SignUpScreen,
+);
+Navigation.registerComponent(
+  `wearbe.home`,
+  () => ReduxProvider(HomeScreen),
+  () => HomeScreen,
 );
 
 Navigation.events().registerAppLaunchedListener(() => {

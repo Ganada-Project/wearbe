@@ -1,11 +1,11 @@
 import styled from 'styled-components/native';
+import { StyleSheet } from 'react-native';
 
 export const Wrapper = styled.View`
   padding: 30px 15px;
 `;
 export const Header = styled.View``;
 export const HeaderTitle = styled.Text``;
-import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {

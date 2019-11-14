@@ -1,13 +1,13 @@
 import {
-  Dimensions,
   Platform,
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from 'react-native';
 import styled from 'styled-components/native';
-import { theme } from '../../constants';
+// import { theme } from '../../constants';
 
-const Button = Platform.OS === 'ios' ? TouchableOpacity : TouchableWithoutFeedback;
+const Button =
+  Platform.OS === 'ios' ? TouchableOpacity : TouchableWithoutFeedback;
 
 export const Wrapper = styled.View`
   flex-direction: row;
@@ -16,7 +16,5 @@ export const Wrapper = styled.View`
 export const ColorItem = styled(Button)`
   width: 30px;
   height: 15px;
-  backgroundColor: ${props => props.selected ? 'black' :props.color};
+  background-color: ${props => (props.selected ? 'black' : props.color)};
 `;
-
-

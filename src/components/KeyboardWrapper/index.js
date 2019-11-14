@@ -9,7 +9,7 @@ const KeyboardWrapper = ({ children }) => {
   async function getHeaderHeight() {
     const constants = await Navigation.constants();
     const { topBarHeight } = constants;
-    setHeaderHeight(topBarHeight);
+    setHeaderHeight(topBarHeight + 30);
   }
 
   useEffect(() => {

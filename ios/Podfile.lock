@@ -230,12 +230,14 @@ PODS:
     - ReactCommon/jscallinvoker (= 0.61.3)
   - ReactNativeNavigation (3.4.0):
     - React
-  - RNCAsyncStorage (1.6.2):
+  - RNCAsyncStorage (1.6.3):
     - React
   - RNFastImage (7.0.2):
     - React
     - SDWebImage (~> 5.0)
     - SDWebImageWebPCoder (~> 0.2.3)
+  - RNReactNativeHapticFeedback (1.8.2):
+    - React
   - RNVectorIcons (6.6.0):
     - React
   - SDWebImage (5.2.5):
@@ -278,6 +280,7 @@ DEPENDENCIES:
   - ReactNativeNavigation (from `../node_modules/react-native-navigation/ReactNativeNavigation.podspec`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - RNFastImage (from `../node_modules/react-native-fast-image`)
+  - RNReactNativeHapticFeedback (from `../node_modules/react-native-haptic-feedback`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -345,6 +348,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/async-storage"
   RNFastImage:
     :path: "../node_modules/react-native-fast-image"
+  RNReactNativeHapticFeedback:
+    :path: "../node_modules/react-native-haptic-feedback"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -379,13 +384,14 @@ SPEC CHECKSUMS:
   React-RCTVibration: 262588c97551b0b1c675468cda857466ba5af18f
   ReactCommon: c2c63d9290b422ca6ad5b3663073a015dd892ae9
   ReactNativeNavigation: 8c8c90fec3ee912010ce4cfb6c9678912c056b9b
-  RNCAsyncStorage: 5ae4d57458804e99f73d427214442a6b10a53856
+  RNCAsyncStorage: 3c304d1adfaea02ec732ac218801cb13897aa8c0
   RNFastImage: 9b0c22643872bb7494c8d87bbbb66cc4c0d9e7a2
+  RNReactNativeHapticFeedback: e11a4da0ce174e9f88b03cbaf5d76d94633cdee2
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   SDWebImage: 4eabf2fa6695c95c47724214417a9c036c965e4a
   SDWebImageWebPCoder: 947093edd1349d820c40afbd9f42acb6cdecd987
   Yoga: 02036f6383c0008edb7ef0773a0e6beb6ce82bd1
 
-PODFILE CHECKSUM: a5b1e8b72b93e2e01f62b5d96bc6648dba94df93
+PODFILE CHECKSUM: aa5df8e14dac2e7fbe7e95ae47286397ba31841a
 
 COCOAPODS: 1.8.4
