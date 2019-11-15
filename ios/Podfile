@@ -47,6 +47,10 @@ target 'wearbe' do
 
   pod 'RNFastImage', :path => '../node_modules/react-native-fast-image'
 
+  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+
+  pod 'react-native-attitude', :path => '../node_modules/react-native-attitude'
+
   target 'wearbeTests' do
     inherit! :search_paths
     # Pods for testing

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Animated } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Icon } from 'react-native-elements';
 import { useNavigationComponentDidAppear } from 'react-native-navigation-hooks/dist';
+import { Navigation } from 'react-native-navigation';
 import {
   Wrapper,
   Header,
@@ -16,7 +18,7 @@ import SelectedSizeCard from './SelectedSizeCard';
 import InitialImage from './Images/initial.png';
 import { theme } from '../../constants';
 import { getSizeCardRequestAction } from '../../actions/homeActions';
-const HomeScreen = () => {
+const HomeScreen = ({ componentId }) => {
   const dispatch = useDispatch();
   const [sizeCardPosition, setSizeCardPostion] = useState(
     new Animated.Value(-20),
@@ -25,6 +27,22 @@ const HomeScreen = () => {
   useNavigationComponentDidAppear(() => {
     dispatch(getSizeCardRequestAction());
   });
+
+  const navigateToPoseInfo = () => {
+    Navigation.push(componentId, {
+      component: {
+        name: 'wearbe.camera',
+        options: {
+          topBar: {
+            title: {
+              text: '신체촬영',
+            },
+          },
+        },
+        passProps: {},
+      },
+    });
+  };
 
   const homeState = useSelector(state => state.get('home'));
   const selectedSizeCard = homeState.get('selectedSizeCard');
@@ -36,7 +54,7 @@ const HomeScreen = () => {
           <SelectedSizeCard sizeCard={selectedSizeCard} empty />
         </SelectedSizeCardWrapper>
         <NavItem.Wrapper>
-          <NavItem>
+          <NavItem onPress={navigateToPoseInfo}>
             <Icon
               type="octicons"
               name="search"
@@ -67,6 +85,10 @@ HomeScreen.options = {
     visible: false,
     drawBehind: true,
   },
+};
+
+HomeScreen.propTypes = {
+  componentId: PropTypes.string,
 };
 
 export default HomeScreen;

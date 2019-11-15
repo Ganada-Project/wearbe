@@ -21,7 +21,7 @@ export const Header = styled.View`
 `;
 
 export const Body = styled.View`
-  flex: 8;
+  flex: 10;
   flex-direction: column;
   justify-content: center;
   align-items: center;

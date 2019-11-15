@@ -22,6 +22,7 @@ import PhoneVerifyScreen from './src/screens/PhoneVerifyScreen';
 import PasswordScreen from './src/screens/PasswordScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import HomeScreen from './src/screens/HomeScreen';
+import CameraScreen from './src/screens/CameraScreen';
 // Middleware: Redux Saga
 const sagaMiddleware = createSagaMiddleware();
 // Redux: Store
@@ -69,6 +70,11 @@ Navigation.registerComponent(
   `wearbe.home`,
   () => ReduxProvider(HomeScreen),
   () => HomeScreen,
+);
+Navigation.registerComponent(
+  `wearbe.camera`,
+  () => ReduxProvider(CameraScreen),
+  () => CameraScreen,
 );
 
 Navigation.events().registerAppLaunchedListener(() => {

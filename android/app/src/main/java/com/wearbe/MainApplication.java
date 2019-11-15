@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.sensorworks.RNAttitude.RNAttitudePackage;
+import org.reactnative.camera.RNCameraPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.mkuczera.RNReactNativeHapticFeedbackPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -46,7 +48,9 @@ public class MainApplication extends NavigationApplication {
                 new AsyncStoragePackage(),
                 new LinearGradientPackage(),
                 new RNReactNativeHapticFeedbackPackage(),
-                new FastImageViewPackage()
+                new FastImageViewPackage(),
+                new RNCameraPackage(),
+                new RNAttitudePackage()
         );
     }
 

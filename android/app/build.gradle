@@ -131,7 +131,8 @@ android {
         applicationId "com.wearbe"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative60" // See note below!
+        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative60"
+        missingDimensionStrategy "react-native-camera", "general" // See note below!
         versionCode 1
         versionName "1.0"
     }
@@ -180,6 +181,8 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-attitude')
+    implementation project(':react-native-camera')
     implementation project(':react-native-fast-image')
     implementation project(':react-native-haptic-feedback')
     implementation project(':react-native-linear-gradient')

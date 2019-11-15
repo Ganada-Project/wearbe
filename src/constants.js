@@ -16,7 +16,7 @@ export const theme = {
 
 export const layout = {
   keyboardPadding: '30px 25px 0px 25px',
-  noHeaderPadding: '60px 25px 30px 25px',
+  noHeaderPadding: '50px 25px 30px 25px',
   defaultPadding: '30px 25px',
 };
 
