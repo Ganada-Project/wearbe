@@ -21,6 +21,8 @@ import {
   VERIFY_PHONE,
   SIGN_UP,
   CHECK_NICKNAME,
+  SIGN_OUT,
+  SIGN_IN,
 } from '../constants/authConstants';
 
 export function signUpAction({ signUpObj }) {
@@ -54,5 +56,19 @@ export function verifyPhoneAction({ number }) {
   return {
     type: VERIFY_PHONE.REQUEST,
     number,
+  };
+}
+
+export function signInAction({ phone, password }) {
+  return {
+    type: SIGN_IN.REQUEST,
+    phone,
+    password,
+  };
+}
+
+export function signOutAction() {
+  return {
+    type: SIGN_OUT.REQUEST,
   };
 }

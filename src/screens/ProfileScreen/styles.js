@@ -3,5 +3,4 @@ import { layout } from '../../constants';
 
 export const Wrapper = styled.View`
   padding: ${layout.noHeaderPadding};
-  flex: 1;
 `;

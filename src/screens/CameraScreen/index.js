@@ -1,9 +1,11 @@
 import React, { useState, useEffect, createRef } from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions, Easing } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import Attitude from 'react-native-attitude';
+import { useAnimation } from 'react-native-animation-hooks';
 
 import { Icon } from 'react-native-elements';
+import { useNavigationComponentDidAppear } from 'react-native-navigation-hooks/dist';
 import { theme } from '../../constants';
 import {
   HeadLine,
@@ -27,6 +29,9 @@ const CameraScreen = () => {
   const [pitch, setPitch] = useState(0);
   const cameraRef = createRef();
   const allowed = pitch < 100 && pitch > 80;
+
+  useNavigationComponentDidAppear(() => {});
+
   useEffect(() => {
     const watchId = Attitude.watch(payload => {
       setPitch(payload.pitch + 90);
@@ -34,6 +39,7 @@ const CameraScreen = () => {
 
     return () => {
       Attitude.clearWatch(watchId);
+      Attitude.stopObserving();
     };
   }, []);
 
@@ -44,6 +50,14 @@ const CameraScreen = () => {
       console.log(data.uri);
     }
   };
+
+  const textOpacityLoop = useAnimation({
+    type: 'spring',
+    initialValue: 0.2,
+    toValue: 1,
+    duration: 1500,
+    easing: Easing.linear,
+  });
 
   return (
     <View style={styles.container}>
@@ -62,17 +76,17 @@ const CameraScreen = () => {
           console.log(barcodes);
         }}
       />
-      {/* <GuideWrapper allowed={allowed}>
+      <GuideWrapper allowed={allowed}>
         <GuideText
           style={{
-            opacity: allowed ? 1 : this.textOpacityLoop,
+            opacity: allowed ? 1 : textOpacityLoop,
           }}
         >
           {allowed
             ? '정수리와 발 끝을 맞추고 촬영하세요!'
             : '최대한 수직으로 유지해주세요!'}
         </GuideText>
-      </GuideWrapper> */}
+      </GuideWrapper>
       <HeadLineWrapper>
         <HeadLine>
           <HeadLabel>

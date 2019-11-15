@@ -4913,6 +4913,10 @@ react-native-animated-linear-gradient@^1.2.0:
     prop-types "^15.6.0"
     rgb2hex "^0.1.0"
 
+react-native-animation-hooks@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-animation-hooks/-/react-native-animation-hooks-1.0.1.tgz#fcda58867d708084cc63c6fcd001f5375a40f45b"
+
 react-native-attitude@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-native-attitude/-/react-native-attitude-1.1.0.tgz#1da5e231f51695e62d9fcda47db7c6064b9a236c"

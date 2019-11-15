@@ -10,14 +10,10 @@ import React, { useEffect } from 'react';
 import { SafeAreaView, StatusBar } from 'react-native';
 import { setCustomText } from 'react-native-global-props';
 
-// redux
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
-
-import { makeSelectUser } from './src/selectors.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUserAction } from './src/actions/authActions';
 import { fonts } from './src/constants';
-import { fetchUserAction } from './src/actions/authActions.js';
+import { BarLoading } from './src/components';
 
 // const customTextProps = {
 //   style: {
@@ -27,28 +23,19 @@ import { fetchUserAction } from './src/actions/authActions.js';
 
 // setCustomText(customTextProps);
 
-const App = ({ fetchUser }) => {
+const App = () => {
+  const dispatch = useDispatch();
+  const global = useSelector(state => state.get('global'));
+  const userLoading = global.get('userLoading');
   useEffect(() => {
-    fetchUser();
+    dispatch(fetchUserAction());
   }, []);
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView></SafeAreaView>
+      {userLoading ? <BarLoading></BarLoading> : <SafeAreaView></SafeAreaView>}
     </>
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  fetchUser: () => {
-    dispatch(fetchUserAction());
-  },
-});
-
-const mapStateToProps = createStructuredSelector({
-  user: makeSelectUser(),
-});
-
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
-
-export default compose(withConnect)(App);
+export default App;

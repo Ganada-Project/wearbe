@@ -12,6 +12,8 @@ import {
   VERIFY_PHONE,
   SIGN_UP,
   CHECK_NICKNAME,
+  SIGN_OUT,
+  SIGN_IN,
   // GET_FCM_TOKEN_SUCCESS,
 } from '../constants/authConstants';
 
@@ -48,6 +50,22 @@ const getUserToken = async () => {
     idToken = null;
   }
   return idToken;
+};
+
+const setIdToken = async idToken => {
+  try {
+    await AsyncStorage.setItem('wearbe.idToken', idToken);
+  } catch (error) {
+    // Error saving data
+  }
+};
+
+const removeToken = async () => {
+  try {
+    await AsyncStorage.removeItem('wearbe.idToken');
+  } catch (error) {
+    // Error retrieving data
+  }
 };
 
 export function* fetchUserFlow({ token }) {
@@ -104,7 +122,6 @@ function* verifyPhoneNumberSaga(action) {
 function* checkNicknameSaga(action) {
   const { nickname } = action;
   const url = `${API_URL}/auth/username?username=${nickname}`;
-  console.log(url);
 
   try {
     const result = yield call(getRequest, { url });
@@ -140,9 +157,8 @@ function* registerUserSaga(action) {
   try {
     const result = yield call(postRequest, { url, payload });
     yield put({ type: SIGN_UP.SUCCESS, payload: { result } });
-    console.log('register');
-    console.log(result);
-    yield AsyncStorage.setItem('wearbe.idToken', result.token);
+
+    yield setIdToken(result.token);
     yield fetchUserFlow({ token: result.token });
     // yield Navigation.push(signUpObj.componentId, {
     //   component: {
@@ -155,6 +171,70 @@ function* registerUserSaga(action) {
   }
 }
 
+function* signInSaga(action) {
+  const url = `${API_URL}/auth/login`;
+  const { phone, password } = action;
+  const payload = {
+    phone,
+    password,
+  };
+  let result;
+  try {
+    result = yield call(postRequest, { url, payload });
+    console.log(result);
+    yield setIdToken(result.token);
+    yield put({ type: SIGN_IN.SUCCESS });
+    yield put({ type: FETCH_USER_REQUESTING });
+    yield fetchUserFlow({ token: result.token });
+    yield Navigation.setRoot({
+      root: {
+        stack: {
+          children: [
+            {
+              component: {
+                name: 'wearbe.home',
+              },
+            },
+          ],
+        },
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    // error? send it to redux
+    yield removeToken();
+    yield put({ type: SIGN_IN.FAIL, error });
+  }
+  // return the token for health and wealth
+}
+
+function* trySignOutSaga() {
+  try {
+    yield put({ type: SIGN_OUT.SUCCESS });
+    yield removeToken();
+    yield Navigation.setRoot({
+      root: {
+        stack: {
+          children: [
+            {
+              component: {
+                name: 'wearbe.welcome',
+                options: {
+                  topBar: {
+                    visible: false,
+                  },
+                },
+              },
+            },
+          ],
+        },
+      },
+    });
+  } catch (error) {
+    yield put({ type: SIGN_OUT.FAIL });
+  }
+}
+
 export default function* authSaga() {
   yield all([
     takeLatest(FETCH_USER_REQUESTING, fetchUserFlow),
@@ -162,5 +242,7 @@ export default function* authSaga() {
     takeLatest(VERIFY_PHONE.REQUEST, verifyPhoneNumberSaga),
     takeLatest(SIGN_UP.REQUEST, registerUserSaga),
     takeLatest(CHECK_NICKNAME.REQUEST, checkNicknameSaga),
+    takeLatest(SIGN_OUT.REQUEST, trySignOutSaga),
+    takeLatest(SIGN_IN.REQUEST, signInSaga),
   ]);
 }

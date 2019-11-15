@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createRef } from 'react';
 
 // react-native
+import { StatusBar } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Navigation } from 'react-native-navigation';
@@ -143,7 +144,12 @@ const PhoneVerifyScreen = ({ componentId }) => {
   );
 
   return (
-    <KeyboradWrapper>{isSent ? renderVerify() : renderCheck()}</KeyboradWrapper>
+    <KeyboradWrapper>
+      <>
+        <StatusBar barStyle="dark-content" />
+        {isSent ? renderVerify() : renderCheck()}
+      </>
+    </KeyboradWrapper>
   );
 };
 

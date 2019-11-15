@@ -70,6 +70,12 @@ const WelcomeScreen = ({ componentId }) => {
   );
 };
 
+WelcomeScreen.options = {
+  topBar: {
+    visible: false,
+  },
+};
+
 WelcomeScreen.propTypes = {
   componentId: PropTypes.string,
 };

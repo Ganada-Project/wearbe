@@ -21,8 +21,10 @@ import WelcomeScreen from './src/screens/WelcomeScreen';
 import PhoneVerifyScreen from './src/screens/PhoneVerifyScreen';
 import PasswordScreen from './src/screens/PasswordScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
+import SignInScreen from './src/screens/SignInScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import CameraScreen from './src/screens/CameraScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
 // Middleware: Redux Saga
 const sagaMiddleware = createSagaMiddleware();
 // Redux: Store
@@ -62,6 +64,11 @@ Navigation.registerComponent(
   () => PasswordScreen,
 );
 Navigation.registerComponent(
+  `wearbe.signIn`,
+  () => ReduxProvider(SignInScreen),
+  () => SignInScreen,
+);
+Navigation.registerComponent(
   `wearbe.signUp`,
   () => ReduxProvider(SignUpScreen),
   () => SignUpScreen,
@@ -75,6 +82,11 @@ Navigation.registerComponent(
   `wearbe.camera`,
   () => ReduxProvider(CameraScreen),
   () => CameraScreen,
+);
+Navigation.registerComponent(
+  `wearbe.profile`,
+  () => ReduxProvider(ProfileScreen),
+  () => ProfileScreen,
 );
 
 Navigation.events().registerAppLaunchedListener(() => {

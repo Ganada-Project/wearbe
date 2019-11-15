@@ -44,6 +44,22 @@ const HomeScreen = ({ componentId }) => {
     });
   };
 
+  const navigateToProfile = () => {
+    Navigation.push(componentId, {
+      component: {
+        name: 'wearbe.profile',
+        options: {
+          topBar: {
+            title: {
+              text: '신체촬영',
+            },
+          },
+        },
+        passProps: {},
+      },
+    });
+  };
+
   const homeState = useSelector(state => state.get('home'));
   const selectedSizeCard = homeState.get('selectedSizeCard');
 
@@ -58,6 +74,14 @@ const HomeScreen = ({ componentId }) => {
             <Icon
               type="octicons"
               name="search"
+              color={theme.textColor}
+              size={20}
+            />
+          </NavItem>
+          <NavItem onPress={navigateToProfile}>
+            <Icon
+              type="simple-line-icon"
+              name="settings"
               color={theme.textColor}
               size={20}
             />
