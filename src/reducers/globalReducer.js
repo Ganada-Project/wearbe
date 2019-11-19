@@ -7,6 +7,7 @@ import {
   CHECK_NICKNAME,
   SIGN_UP,
   SIGN_OUT,
+  SIGN_IN,
 } from '../constants/authConstants';
 
 // Initial State
@@ -23,7 +24,6 @@ const initialState = fromJS({
     checking: false,
   },
   userLoading: false,
-  signUpLoading: false,
 });
 
 function globalReducer(state = initialState, action) {
@@ -52,11 +52,12 @@ function globalReducer(state = initialState, action) {
         .setIn(['nickname', 'overlap'], action.overlap)
         .setIn(['nickname', 'checking'], false);
     case SIGN_UP.REQUEST:
-      return state.set('signUpLoading', true);
-    case SIGN_UP.SUCCESS:
-      return state.set('signUpLoading', false);
+      return state.set('userLoading', true);
     case SIGN_OUT.SUCCESS:
       return state.set('userData', state.get('userData')).set('idToken', null);
+    case SIGN_IN.REQUEST:
+      return state.set('userLoading', true);
+
     default:
       return state;
   }

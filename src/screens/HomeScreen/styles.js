@@ -20,11 +20,16 @@ export const Header = styled.View`
   z-index: 100;
 `;
 
-export const Body = styled.View`
+export const InitialWrapper = styled.View`
   flex: 10;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+export const Body = styled.View`
+  flex: 10;
+\
 `;
 
 export const IconWrapper =

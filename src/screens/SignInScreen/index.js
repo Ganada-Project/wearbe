@@ -9,6 +9,7 @@ import {
   RegisterForm,
   FullWidthButton,
   KeyboradWrapper,
+  BarLoading,
 } from '../../components';
 import { signInAction } from '../../actions/authActions';
 
@@ -17,6 +18,8 @@ const SignInScreen = ({ componentId }) => {
   const phoneRef = createRef();
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const global = useSelector(state => state.get('global'));
+  const userLoading = global.get('userLoading');
 
   const onChangePhoneText = text => {
     setPhone(text);
@@ -39,30 +42,36 @@ const SignInScreen = ({ componentId }) => {
       <>
         <StatusBar barStyle="dark-content" />
         <Wrapper>
-          <Header>
-            <RegisterForm
-              phone
-              label="휴대전화 번호"
-              placeholder="휴대전화번호를 입력해주세요."
-              onChangePhoneText={onChangePhoneText}
-              phoneValue={phone}
-              phoneRef={phoneRef}
-            />
-            <RegisterForm
-              label="비밀번호"
-              secure
-              onChangeText={onChangePassword}
-              value={password}
-            />
-            <InfoText>계졍/비밀번호를 잊으셨나요?</InfoText>
-          </Header>
-          <Footer>
-            <FullWidthButton
-              content="로그인"
-              disabled={phone === '' || password === ''}
-              onPress={onPressSignIn}
-            />
-          </Footer>
+          {!userLoading ? (
+            <>
+              <Header>
+                <RegisterForm
+                  phone
+                  label="휴대전화 번호"
+                  placeholder="휴대전화번호를 입력해주세요."
+                  onChangePhoneText={onChangePhoneText}
+                  phoneValue={phone}
+                  phoneRef={phoneRef}
+                />
+                <RegisterForm
+                  label="비밀번호"
+                  secure
+                  onChangeText={onChangePassword}
+                  value={password}
+                />
+                <InfoText>계졍/비밀번호를 잊으셨나요?</InfoText>
+              </Header>
+              <Footer>
+                <FullWidthButton
+                  content="로그인"
+                  disabled={phone === '' || password === ''}
+                  onPress={onPressSignIn}
+                />
+              </Footer>
+            </>
+          ) : (
+            <BarLoading></BarLoading>
+          )}
         </Wrapper>
       </>
     </KeyboradWrapper>

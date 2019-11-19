@@ -10,7 +10,11 @@
  *   return state.set('yourStateVariable', true);
  */
 import { fromJS, List } from 'immutable';
-import { GET_SIZE_CARD } from '../constants/homeConstants';
+import {
+  GET_SIZE_CARD,
+  SET_SIZE_CARD,
+  GET_ITEMS,
+} from '../constants/homeConstants';
 
 // The initial state of the App
 export const initialState = fromJS({
@@ -32,21 +36,21 @@ function homeReducer(state = initialState, action) {
       return state.set('sizeCardsLoading', true);
     case GET_SIZE_CARD.SUCCESS:
       return state
-        .set('sizeCardLoading', false)
+        .set('sizeCardsLoading', false)
         .set('sizeCards', List(action.cards))
         .set('selectedSizeCard', fromJS(action.selectedSizeCard));
     case GET_SIZE_CARD.FAIL:
       return state
-        .set('sizeCardLoading', false)
+        .set('sizeCardsLoading', false)
         .set('sizeCardError', action.error);
-    // case SET_SIZE_CARD_SUCCESS:
-    //   return state.set('selectedSizeCard', fromJS(action.sizeCard));
-    // case GET_ITEMS_REQUEST:
-    //   return state.set('itemsLoading', true);
-    // case GET_ITEMS_SUCCESS:
-    //   return state.set('itemsLoading', false).set('items', List(action.items));
-    // case GET_ITEMS_FAIL:
-    //   return state.set('itemsLoading', false).set('itemError', action.error);
+    case SET_SIZE_CARD.SUCCESS:
+      return state.set('selectedSizeCard', fromJS(action.sizeCard));
+    case GET_ITEMS.REQUEST:
+      return state.set('itemsLoading', true);
+    case GET_ITEMS.SUCCESS:
+      return state.set('itemsLoading', false).set('items', List(action.items));
+    case GET_ITEMS.FAIL:
+      return state.set('itemsLoading', false).set('itemError', action.error);
     default:
       return state;
   }

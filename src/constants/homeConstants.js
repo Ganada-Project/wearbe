@@ -14,3 +14,15 @@ export const GET_SIZE_CARD = {
   SUCCESS: 'WearBe/Home/GET_SIZE_CARDS_SUCCESS',
   FAIL: 'WearBe/Home/GET_SIZE_CARDS_FAIL',
 };
+
+export const SET_SIZE_CARD = {
+  REQUEST: 'WearBe/Home/SET_SIZE_CARD_REQUEST',
+  SUCCESS: 'WearBe/Home/SET_SIZE_CARD_SUCCESS',
+  FAIL: 'WearBe/Home/SET_SIZE_CARD_FAIL',
+};
+
+export const GET_ITEMS = {
+  REQUEST: 'WearBe/Home/GET_ITEMS_REQUEST',
+  SUCCESS: 'WearBe/Home/GET_ITEMS_SUCCESS',
+  FAIL: 'WearBe/Home/GET_ITEMS_FAIL',
+};

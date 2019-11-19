@@ -7,12 +7,12 @@
  */
 
 import React, { useEffect } from 'react';
-import { SafeAreaView, StatusBar } from 'react-native';
+import { SafeAreaView, StatusBar, View } from 'react-native';
 import { setCustomText } from 'react-native-global-props';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserAction } from './src/actions/authActions';
-import { fonts } from './src/constants';
+import { fonts, theme } from './src/constants';
 import { BarLoading } from './src/components';
 
 // const customTextProps = {
@@ -33,7 +33,11 @@ const App = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      {userLoading ? <BarLoading></BarLoading> : <SafeAreaView></SafeAreaView>}
+      {userLoading ? (
+        <BarLoading></BarLoading>
+      ) : (
+        <View style={{ backgroyndColor: theme.backgroundColor }}></View>
+      )}
     </>
   );
 };

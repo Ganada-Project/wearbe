@@ -1,7 +1,12 @@
-import { call, put, takeLatest, all } from 'redux-saga/effects';
+import { call, put, takeLatest, all, take } from 'redux-saga/effects';
+import { Navigation } from 'react-native-navigation';
 import { getRequest, postRequest } from '../utils/request';
 import { API_URL } from '../constants';
-import { GET_SIZE_CARD } from '../constants/homeConstants';
+import {
+  GET_SIZE_CARD,
+  SET_SIZE_CARD,
+  GET_ITEMS,
+} from '../constants/homeConstants';
 
 function* getSizeCardsSaga() {
   const url = `${API_URL}/card`;
@@ -18,12 +23,43 @@ function* getSizeCardsSaga() {
       cards: result.cards,
       selectedSizeCard,
     });
+    yield put({ type: GET_ITEMS.REQUEST });
   } catch (error) {
     console.log(error);
     yield put({ type: GET_SIZE_CARD.FAIL, error });
   }
 }
 
+function* setSizeCardSaga(action) {
+  const { sizeCard, cId } = action;
+  try {
+    yield put({ type: SET_SIZE_CARD.SUCCESS, sizeCard });
+    yield Navigation.dismissModal(cId);
+  } catch (error) {
+    yield put({ type: SET_SIZE_CARD.FAIL });
+  }
+}
+
+function* getItemsSaga() {
+  const url = `${API_URL}/item/all?gender=w`;
+  try {
+    const { filtered } = yield call(getRequest, { url });
+    const transformed = filtered.map(x => ({
+      ...x,
+      uri: x.main_img,
+      // headers: { Authorization: 'Basic AuthToken' },
+    }));
+    yield put({ type: GET_ITEMS.SUCCESS, items: transformed });
+  } catch (error) {
+    yield put({ type: GET_ITEMS.FAIL, error });
+    console.log(error);
+  }
+}
+
 export default function* homeSaga() {
-  yield all([takeLatest(GET_SIZE_CARD.REQUEST, getSizeCardsSaga)]);
+  yield all([
+    takeLatest(GET_SIZE_CARD.REQUEST, getSizeCardsSaga),
+    takeLatest(SET_SIZE_CARD.REQUEST, setSizeCardSaga),
+    takeLatest(GET_ITEMS.REQUEST, getItemsSaga),
+  ]);
 }

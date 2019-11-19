@@ -25,6 +25,8 @@ import SignInScreen from './src/screens/SignInScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import CameraScreen from './src/screens/CameraScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
+import SizeCardList from './src/screens/SizeCardList';
+import ItemDetailScreen from './src/screens/ItemDetailScreen';
 // Middleware: Redux Saga
 const sagaMiddleware = createSagaMiddleware();
 // Redux: Store
@@ -79,6 +81,11 @@ Navigation.registerComponent(
   () => HomeScreen,
 );
 Navigation.registerComponent(
+  `wearbe.itemDetail`,
+  () => ReduxProvider(ItemDetailScreen),
+  () => ItemDetailScreen,
+);
+Navigation.registerComponent(
   `wearbe.camera`,
   () => ReduxProvider(CameraScreen),
   () => CameraScreen,
@@ -87,6 +94,11 @@ Navigation.registerComponent(
   `wearbe.profile`,
   () => ReduxProvider(ProfileScreen),
   () => ProfileScreen,
+);
+Navigation.registerComponent(
+  `wearbe.sizeCardList`,
+  () => ReduxProvider(SizeCardList),
+  () => SizeCardList,
 );
 
 Navigation.events().registerAppLaunchedListener(() => {
