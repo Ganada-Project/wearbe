@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { Animated, View, TouchableWithoutFeedback } from 'react-native';
+import {
+  Animated,
+  View,
+  TouchableWithoutFeedback,
+  StatusBar,
+} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Icon } from 'react-native-elements';
 import MasonryList from 'react-native-masonry-list';
@@ -196,6 +201,7 @@ const HomeScreen = ({ componentId }) => {
 
   return (
     <Wrapper>
+      <StatusBar barStyle="dark-content"></StatusBar>
       <Header>
         <SelectedSizeCardWrapper>
           <SelectedSizeCard
