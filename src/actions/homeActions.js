@@ -2,6 +2,7 @@ import {
   GET_SIZE_CARD,
   SET_SIZE_CARD,
   GET_ITEMS,
+  GET_SIZE_CARD_DETAIL,
 } from '../constants/homeConstants';
 
 export function setSizeCardRequestAction({ sizeCard, cId }) {
@@ -15,6 +16,13 @@ export function setSizeCardRequestAction({ sizeCard, cId }) {
 export function getSizeCardRequestAction() {
   return {
     type: GET_SIZE_CARD.REQUEST,
+  };
+}
+
+export function getSizeCardDetailAction({ sizeCardId }) {
+  return {
+    type: GET_SIZE_CARD_DETAIL.REQUEST,
+    sizeCardId,
   };
 }
 

@@ -14,12 +14,14 @@ import {
   GET_SIZE_CARD,
   SET_SIZE_CARD,
   GET_ITEMS,
+  GET_SIZE_CARD_DETAIL,
 } from '../constants/homeConstants';
 
 // The initial state of the App
 export const initialState = fromJS({
   sizeCardsLoading: false,
   sizeCards: [],
+  sizeDetail: [],
   selectedSizeCard: {
     id: null,
     name: '',
@@ -51,6 +53,8 @@ function homeReducer(state = initialState, action) {
       return state.set('itemsLoading', false).set('items', List(action.items));
     case GET_ITEMS.FAIL:
       return state.set('itemsLoading', false).set('itemError', action.error);
+    case GET_SIZE_CARD_DETAIL.SUCCESS:
+      return state.set('sizeDetail', List(action.sizeCardDetail));
     default:
       return state;
   }

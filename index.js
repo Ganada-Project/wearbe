@@ -27,6 +27,7 @@ import CameraScreen from './src/screens/CameraScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import SizeCardList from './src/screens/SizeCardList';
 import ItemDetailScreen from './src/screens/ItemDetailScreen';
+console.disableYellowBox = true;
 // Middleware: Redux Saga
 const sagaMiddleware = createSagaMiddleware();
 // Redux: Store

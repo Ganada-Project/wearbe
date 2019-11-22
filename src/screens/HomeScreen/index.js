@@ -57,6 +57,7 @@ const HomeScreen = ({ componentId }) => {
   const userData = global.get('userData');
   const homeState = useSelector(state => state.get('home'));
   const sizeCards = homeState.get('sizeCards');
+  const sizeDetail = homeState.get('sizeDetail');
   const sizeCardsLoading = homeState.get('sizeCardsLoading');
   const selectedSizeCard = homeState.get('selectedSizeCard');
   const items = homeState.get('items');
@@ -138,7 +139,8 @@ const HomeScreen = ({ componentId }) => {
       component: {
         name: 'wearbe.itemDetail',
         passProps: {
-          item,
+          itemDetail: item,
+          sizeDetail,
         },
       },
     });
@@ -170,7 +172,7 @@ const HomeScreen = ({ componentId }) => {
         <MasonryList
           images={items.toJS()}
           columns={2}
-          spacing={2}
+          spacing={3}
           completeCustomComponent={item => (
             <MasonryCustomComponent onPress={onPressItem} {...item} /> // eslint-disable-line
           )}

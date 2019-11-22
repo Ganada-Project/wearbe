@@ -6,6 +6,8 @@ import {
   GET_SIZE_CARD,
   SET_SIZE_CARD,
   GET_ITEMS,
+  GET_SIZE_CARD_DETAIL,
+  sizeDetail,
 } from '../constants/homeConstants';
 
 function* getSizeCardsSaga() {
@@ -17,6 +19,10 @@ function* getSizeCardsSaga() {
       selectedSizeCard = { name: '사이즈카드 등록' };
     } else {
       selectedSizeCard = result.cards[0]; //eslint-disable-line
+      yield put({
+        type: GET_SIZE_CARD_DETAIL.REQUEST,
+        sizeCardId: result.cards[0].id,
+      });
     }
     yield put({
       type: GET_SIZE_CARD.SUCCESS,
@@ -25,8 +31,24 @@ function* getSizeCardsSaga() {
     });
     yield put({ type: GET_ITEMS.REQUEST });
   } catch (error) {
-    console.log(error);
     yield put({ type: GET_SIZE_CARD.FAIL, error });
+  }
+}
+
+function* getSizeCardDetailSaga(action) {
+  try {
+    const url = `${API_URL}/card/size?card=${action.sizeCardId}`;
+    const sizeCardDetail = yield call(getRequest, { url });
+    const mergedSizeCardDetail = sizeDetail.map(detail => ({
+      ...detail,
+      measurement: sizeCardDetail.size[detail.key],
+    }));
+    yield put({
+      type: GET_SIZE_CARD_DETAIL.SUCCESS,
+      sizeCardDetail: mergedSizeCardDetail,
+    });
+  } catch (error) {
+    yield put({ type: GET_SIZE_CARD_DETAIL.FAIL, error });
   }
 }
 
@@ -34,6 +56,7 @@ function* setSizeCardSaga(action) {
   const { sizeCard, cId } = action;
   try {
     yield put({ type: SET_SIZE_CARD.SUCCESS, sizeCard });
+    yield put({ type: GET_SIZE_CARD_DETAIL.REQUEST, sizeCardId: sizeCard.id });
     yield Navigation.dismissModal(cId);
   } catch (error) {
     yield put({ type: SET_SIZE_CARD.FAIL });
@@ -61,5 +84,6 @@ export default function* homeSaga() {
     takeLatest(GET_SIZE_CARD.REQUEST, getSizeCardsSaga),
     takeLatest(SET_SIZE_CARD.REQUEST, setSizeCardSaga),
     takeLatest(GET_ITEMS.REQUEST, getItemsSaga),
+    takeLatest(GET_SIZE_CARD_DETAIL.REQUEST, getSizeCardDetailSaga),
   ]);
 }
