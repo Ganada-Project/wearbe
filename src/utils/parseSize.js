@@ -1,7 +1,9 @@
 const renderSizeName = key => {
   switch (key) {
-    case 'chest':
+    case 'shoulder':
       return '어깨 넓이';
+    case 'chest':
+      return '가슴 넓이';
     case 'arm':
       return '팔길이';
     case 'waist':

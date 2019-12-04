@@ -51,6 +51,10 @@ target 'wearbe' do
 
   pod 'react-native-attitude', :path => '../node_modules/react-native-attitude'
 
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
+  pod 'RNCharts', :path => '../node_modules/react-native-charts-wrapper'
+
   target 'wearbeTests' do
     inherit! :search_paths
     # Pods for testing

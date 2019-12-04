@@ -12,6 +12,7 @@ import { Icon } from 'react-native-elements';
 import MasonryList from 'react-native-masonry-list';
 import { useNavigationComponentDidAppear } from 'react-native-navigation-hooks/dist';
 import { Navigation } from 'react-native-navigation';
+import NumberFormat from 'react-number-format';
 import {
   Wrapper,
   Header,
@@ -155,7 +156,7 @@ const HomeScreen = ({ componentId }) => {
     if (sizeCardsLoading || itemsLoading) {
       return (
         <InitialWrapper>
-          <BarLoading></BarLoading>
+          <BarLoading size={30}></BarLoading>
         </InitialWrapper>
       );
     }
@@ -190,7 +191,13 @@ const HomeScreen = ({ componentId }) => {
             >
               <ItemInfo>
                 <ItemInfo.Maker>{data.maker}</ItemInfo.Maker>
-                <ItemInfo.Price>{data.price}</ItemInfo.Price>
+                <NumberFormat
+                  value={data.price}
+                  thousandSeparator
+                  prefix="₩"
+                  displayType="text"
+                  renderText={value => <ItemInfo.Price>{value}</ItemInfo.Price>}
+                ></NumberFormat>
               </ItemInfo>
             </TouchableWithoutFeedback>
           )}

@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.github.wuxudong.rncharts.MPAndroidChartPackage;
+import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.sensorworks.RNAttitude.RNAttitudePackage;
 import org.reactnative.camera.RNCameraPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
@@ -50,7 +52,8 @@ public class MainApplication extends NavigationApplication {
                 new RNReactNativeHapticFeedbackPackage(),
                 new FastImageViewPackage(),
                 new RNCameraPackage(),
-                new RNAttitudePackage()
+                new RNAttitudePackage(),
+                new RNCWebViewPackage()
         );
     }
 

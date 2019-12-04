@@ -1,50 +1,81 @@
 import styled from 'styled-components/native';
-import { Dimensions } from 'react-native';
+import {
+  Dimensions,
+  Platform,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import { theme, layout } from '../../constants';
+const window = Dimensions.get('window').width;
 
-export const Wrapper = styled.ScrollView`
+const Button =
+  Platform.OS === 'ios' ? TouchableOpacity : TouchableWithoutFeedback;
+
+export const Wrapper = styled.View`
   flex: 1;
   /* height: 500px; */
   background-color: ${theme.backgroundColor};
   padding: ${layout.defaultPadding};
+  padding: 30px 25px 0px 25px;
 `;
 
 export const Header = styled.View`
   flex: 0.1;
-  padding-top: 15px;
   flex-direction: column;
   justify-content: center;
 `;
 
 export const Body = styled.ScrollView`
   flex: 1;
-  /* padding: 15px 0; */
   /* border: 1px red solid; */
+  margin-bottom: 55px;
+`;
+
+export const ItemInfoWrapper = styled.View`
+  margin-top: 15px;
+  flex-direction: row;
+  padding: 10px 0;
+`;
+
+export const ItemInfo = styled.View`
+  flex-direction: column;
+  margin-right: 20%;
+`;
+
+ItemInfo.Label = styled.Text`
+  font-size: 14px;
+  color: ${theme.darkGray};
+  margin-bottom: 5px;
+`;
+ItemInfo.Text = styled.Text`
+  font-size: 18px;
+  font-weight: bold;
 `;
 
 export const CarouselWrapper = styled.View`
   justify-content: center;
   align-items: center;
+  flex: 1;
 `;
 
 export const SizeChartWrapper = styled.View`
   background-color: white;
   width: 100%;
-  padding: 10px;
+  padding: 20px 10px;
   border-radius: 20px;
   margin-top: 20px;
 `;
 
-export const SizeLabel = styled.View`
-  margin-top: 10px;
+export const SizeLabel = styled.ScrollView`
+  margin-top: 5px;
   margin-bottom: 20px;
   width: 100%;
   flex-direction: row;
 `;
 
 SizeLabel.Item = styled.View`
-  flex: 1;
-  height: 40px;
+  width: ${window / 6};
+  height: 35px;
   border: 1px ${props => (props.selected ? theme.pointColor : theme.grayColor)}
     solid;
   margin-right: 10px;
@@ -71,6 +102,8 @@ SizeGraph.Label = styled.Text`
 
 SizeGraph.BarWrapper = styled.View`
   width: 100%;
+  justify-content: center;
+  align-items: center;
 `;
 
 SizeGraph.BarUser = styled.View`
@@ -89,6 +122,31 @@ SizeGraph.BarSize = styled.View`
   border-radius: 2px;
 `;
 
+SizeGraph.LegendWrapper = styled.View`
+  margin-top: 20px;
+  flex-direction: row;
+  align-items: center;
+`;
+
+SizeGraph.Legend = styled.View`
+  margin-right: 20px;
+  flex-direction: row;
+  align-items: center;
+`;
+
+SizeGraph.LegendDot = styled.View`
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  margin-right: 10px;
+  background-color: ${props =>
+    !props.item ? theme.pointColor : theme.darkGray};
+`;
+
+SizeGraph.LegendText = styled.Text`
+  color: ${props => (!props.item ? theme.pointColor : theme.darkGray)};
+`;
+
 export const HeaderText = styled.Text`
   font-size: 14px;
   color: ${theme.darkGray};
@@ -101,4 +159,27 @@ export const SubText = styled.Text`
   font-size: 20px;
   margin-bottom: 15px;
   color: ${theme.textColor};
+`;
+
+export const Footer = styled.View`
+  position: absolute;
+  bottom: 0px;
+  left: 10px;
+  right: 10px;
+  height: 50px;
+  width: ${window - 20};
+  background-color: ${theme.pointColor};
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+`;
+
+Footer.Button = styled(Button)`
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+`;
+
+Footer.Text = styled.Text`
+  color: white;
 `;

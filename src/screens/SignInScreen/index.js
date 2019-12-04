@@ -12,6 +12,7 @@ import {
   BarLoading,
 } from '../../components';
 import { signInAction } from '../../actions/authActions';
+import { theme } from '../../constants';
 
 const SignInScreen = ({ componentId }) => {
   const dispatch = useDispatch();
@@ -81,6 +82,9 @@ const SignInScreen = ({ componentId }) => {
 SignInScreen.options = {
   topBar: {
     noBorder: true,
+    background: {
+      color: 'white',
+    },
   },
 };
 

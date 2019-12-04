@@ -18,6 +18,7 @@ import rootReducer from './src/reducers';
 import { rootSaga } from './src/sagas';
 
 import WelcomeScreen from './src/screens/WelcomeScreen';
+import WebViewScreen from './src/screens/WebViewScreen';
 import PhoneVerifyScreen from './src/screens/PhoneVerifyScreen';
 import PasswordScreen from './src/screens/PasswordScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
@@ -55,7 +56,11 @@ Navigation.registerComponent(
   () => ReduxProvider(WelcomeScreen),
   () => WelcomeScreen,
 );
-
+Navigation.registerComponent(
+  `wearbe.webView`,
+  () => ReduxProvider(WebViewScreen),
+  () => WebViewScreen,
+);
 Navigation.registerComponent(
   `wearbe.phoneVerify`,
   () => ReduxProvider(PhoneVerifyScreen),
