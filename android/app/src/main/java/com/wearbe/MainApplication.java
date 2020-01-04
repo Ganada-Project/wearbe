@@ -53,7 +53,7 @@ public class MainApplication extends NavigationApplication {
                 new FastImageViewPackage(),
                 new RNCameraPackage(),
                 new RNAttitudePackage(),
-                new RNCWebViewPackage()
+                new RNCWebViewPackage(),
         );
     }
 

@@ -13,6 +13,7 @@ import MasonryList from 'react-native-masonry-list';
 import { useNavigationComponentDidAppear } from 'react-native-navigation-hooks/dist';
 import { Navigation } from 'react-native-navigation';
 import NumberFormat from 'react-number-format';
+import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 import {
   Wrapper,
   Header,
@@ -31,6 +32,13 @@ import {
   setSizeCardRequestAction,
 } from '../../actions/homeActions';
 import { BarLoading } from '../../components';
+import { alertSetSizeCard } from './utils/alert';
+import { SizeCardAlert } from './SizeCardAlert';
+
+const options = {
+  enableVibrateFallback: true,
+  ignoreAndroidSystemSettings: false,
+};
 
 const MasonryCustomComponent = ({ data, style, onPress }) => (
   <TouchableWithoutFeedback onPress={() => onPress(data)}>
@@ -55,10 +63,6 @@ MasonryCustomComponent.propTypes = {
 
 const HomeScreen = ({ componentId }) => {
   const dispatch = useDispatch();
-  const [sizeCardPosition, setSizeCardPostion] = useState(
-    new Animated.Value(-20),
-  );
-
   const global = useSelector(state => state.get('global'));
   const userData = global.get('userData');
   const homeState = useSelector(state => state.get('home'));
@@ -70,10 +74,22 @@ const HomeScreen = ({ componentId }) => {
   const itemsLoading = homeState.get('itemsLoading');
   const empty = sizeCards.size === 0;
 
+  const [sizeCardAlertTop] = useState(new Animated.Value(-20));
+  const [sizeCardAlertOpacity] = useState(new Animated.Value(0));
+
+  console.log(sizeCardAlertOpacity);
+  console.log(sizeCardAlertTop);
+
   useEffect(() => {
     dispatch(getSizeCardRequestAction());
   }, []);
 
+  useEffect(() => {
+    if (selectedSizeCard.get('id')) {
+      console.log('sizeCardChanged!');
+      alertSizeCardChanged();
+    }
+  }, [selectedSizeCard]);
   useNavigationComponentDidAppear(() => {});
 
   const setSizeCard = ({ sizeCard, cId }) => {
@@ -152,6 +168,11 @@ const HomeScreen = ({ componentId }) => {
     });
   };
 
+  const alertSizeCardChanged = () => {
+    ReactNativeHapticFeedback.trigger('impactMedium', options);
+    alertSetSizeCard({ sizeCardAlertOpacity, sizeCardAlertTop });
+  };
+
   const renderBody = () => {
     if (sizeCardsLoading || itemsLoading) {
       return (
@@ -175,6 +196,10 @@ const HomeScreen = ({ componentId }) => {
       );
     return (
       <Body>
+        <SizeCardAlert
+          sizeCardAlertOpacity={sizeCardAlertOpacity}
+          sizeCardAlertTop={sizeCardAlertTop}
+        />
         <MasonryList
           images={items.toJS()}
           columns={2}

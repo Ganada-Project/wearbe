@@ -17,7 +17,7 @@ export const Header = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  z-index: 100;
+  z-index: 10;
 `;
 
 export const InitialWrapper = styled.View`
@@ -29,7 +29,6 @@ export const InitialWrapper = styled.View`
 
 export const Body = styled.View`
   flex: 10;
-\
 `;
 
 export const IconWrapper =

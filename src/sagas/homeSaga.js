@@ -16,6 +16,7 @@ function* getSizeCardsSaga() {
     let selectedSizeCard;
     const result = yield call(getRequest, { url });
     if (result.cards.length === 0) {
+      // 사이즈카드가 없을시에, 사이즈 카드 등록으로 초기화.
       selectedSizeCard = { name: '사이즈카드 등록' };
     } else {
       selectedSizeCard = result.cards[0]; //eslint-disable-line
@@ -29,7 +30,7 @@ function* getSizeCardsSaga() {
       cards: result.cards,
       selectedSizeCard,
     });
-    yield put({ type: GET_ITEMS.REQUEST });
+    yield put({ type: GET_ITEMS.REQUEST, sizeCard: result.cards[0] });
   } catch (error) {
     yield put({ type: GET_SIZE_CARD.FAIL, error });
   }
@@ -57,14 +58,17 @@ function* setSizeCardSaga(action) {
   try {
     yield put({ type: SET_SIZE_CARD.SUCCESS, sizeCard });
     yield put({ type: GET_SIZE_CARD_DETAIL.REQUEST, sizeCardId: sizeCard.id });
+    yield put({ type: GET_ITEMS.REQUEST, sizeCard });
     yield Navigation.dismissModal(cId);
   } catch (error) {
     yield put({ type: SET_SIZE_CARD.FAIL });
   }
 }
 
-function* getItemsSaga() {
-  const url = `${API_URL}/item/all?gender=w`;
+function* getItemsSaga(action) {
+  const { sizeCard } = action;
+  const gender = sizeCard.gender === '남' ? 'm' : 'w';
+  const url = `${API_URL}/item/all?gender=${gender}`;
   try {
     const { filtered } = yield call(getRequest, { url });
     const transformed = filtered.map(x => ({

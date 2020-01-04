@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Navigation } from 'react-native-navigation';
 import Carousel, { ParallaxImage } from 'react-native-snap-carousel';

@@ -26,8 +26,9 @@ export function getSizeCardDetailAction({ sizeCardId }) {
   };
 }
 
-export function getItemsRequestAction() {
+export function getItemsRequestAction({ sizeCard }) {
   return {
     type: GET_ITEMS.REQUEST,
+    sizeCard,
   };
 }

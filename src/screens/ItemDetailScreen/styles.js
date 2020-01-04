@@ -6,29 +6,26 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import { theme, layout } from '../../constants';
-const window = Dimensions.get('window').width;
+const window = Dimensions.get('window');
 
 const Button =
   Platform.OS === 'ios' ? TouchableOpacity : TouchableWithoutFeedback;
 
 export const Wrapper = styled.View`
   flex: 1;
-  /* height: 500px; */
   background-color: ${theme.backgroundColor};
   padding: ${layout.defaultPadding};
   padding: 30px 25px 0px 25px;
 `;
 
 export const Header = styled.View`
-  flex: 0.1;
   flex-direction: column;
   justify-content: center;
 `;
 
 export const Body = styled.ScrollView`
-  flex: 1;
-  /* border: 1px red solid; */
   margin-bottom: 55px;
+  flex: 1;
 `;
 
 export const ItemInfoWrapper = styled.View`
@@ -53,14 +50,14 @@ ItemInfo.Text = styled.Text`
 `;
 
 export const CarouselWrapper = styled.View`
-  justify-content: center;
-  align-items: center;
   flex: 1;
+  width: 100%;
+  justify-content: center;
 `;
 
 export const SizeChartWrapper = styled.View`
-  background-color: white;
   width: 100%;
+  background-color: white;
   padding: 20px 10px;
   border-radius: 20px;
   margin-top: 20px;
@@ -74,7 +71,7 @@ export const SizeLabel = styled.ScrollView`
 `;
 
 SizeLabel.Item = styled.View`
-  width: ${window / 6};
+  width: ${window.width / 6};
   height: 35px;
   border: 1px ${props => (props.selected ? theme.pointColor : theme.grayColor)}
     solid;
@@ -167,7 +164,7 @@ export const Footer = styled.View`
   left: 10px;
   right: 10px;
   height: 50px;
-  width: ${window - 20};
+  width: ${window.width - 20};
   background-color: ${theme.pointColor};
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
