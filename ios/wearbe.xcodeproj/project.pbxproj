@@ -33,7 +33,6 @@
 		97AB02310167D63C4DA31B8D /* libPods-wearbe-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D23CB1AE38E98C951B6D7ADE /* libPods-wearbe-tvOS.a */; };
 		A5557E09D12245189D8AFC48 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50529000EB1D467DA3E2D8BA /* MaterialCommunityIcons.ttf */; };
 		BF3790377F844C2C8A0049EB /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5D616349C10434ABD29C1C4 /* SimpleLineIcons.ttf */; };
-		EDB06B152397A90400129AD4 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB06B142397A90400129AD4 /* File.swift */; };
 		F2CC693BFD624D74954FFD2D /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DC828D17054486DA0229623 /* Foundation.ttf */; };
 		F7B315255E2441FBBF18DE64 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C588D1C6A0884C8FBD77FDBD /* FontAwesome5_Solid.ttf */; };
 		FCFED93325FB40078E81DD06 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22DA9931EE6C4793855995D2 /* MaterialIcons.ttf */; };
@@ -99,8 +98,6 @@
 		EC58AF885BE1C64402DB2A93 /* Pods-wearbe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wearbe.debug.xcconfig"; path = "Target Support Files/Pods-wearbe/Pods-wearbe.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		EDB06B132397A90400129AD4 /* wearbe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "wearbe-Bridging-Header.h"; sourceTree = "<group>"; };
-		EDB06B142397A90400129AD4 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		FF6DB2E26D38D472274E61FA /* Pods-wearbe-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wearbe-tvOS.release.xcconfig"; path = "Target Support Files/Pods-wearbe-tvOS/Pods-wearbe-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -217,7 +214,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				EDB06B142397A90400129AD4 /* File.swift */,
 				13B07FAE1A68108700A75B9A /* wearbe */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* wearbeTests */,
@@ -225,7 +221,6 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				A034882888F1B109DA9A6B73 /* Pods */,
 				0A6D843835B247E6B7E53DDE /* Resources */,
-				EDB06B132397A90400129AD4 /* wearbe-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -661,7 +656,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
-				EDB06B152397A90400129AD4 /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -715,7 +709,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7D51E434E25F0E4A1A2EE4DA /* Pods-wearbeTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 2Q7389MPSH;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -740,7 +733,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3EE21536C54A5BAE53E02118 /* Pods-wearbeTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 2Q7389MPSH;

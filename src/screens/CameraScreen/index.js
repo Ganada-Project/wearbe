@@ -1,8 +1,10 @@
 import React, { useState, useEffect, createRef } from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheet, View, Dimensions, Easing, Animated } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import Attitude from 'react-native-attitude';
 import { useAnimation } from 'react-native-animation-hooks';
+import { Navigation } from 'react-native-navigation';
 
 import { Icon } from 'react-native-elements';
 import { useNavigationComponentDidAppear } from 'react-native-navigation-hooks/dist';
@@ -25,11 +27,12 @@ import {
   DisableButton,
 } from './styles';
 
-const CameraScreen = () => {
+const CameraScreen = ({ componentId }) => {
   const [pitch, setPitch] = useState(0);
   const [textOpacityLoop] = useState(new Animated.Value(0));
   const cameraRef = createRef();
-  const allowed = pitch < 100 && pitch > 80;
+  // const allowed = pitch < 100 && pitch > 80;
+  const allowed = true;
 
   useNavigationComponentDidAppear(() => {
     startAnimation();
@@ -51,6 +54,19 @@ const CameraScreen = () => {
       const options = { quality: 0.5, base64: true };
       const data = await cameraRef.current.takePictureAsync(options);
       console.log(data.uri);
+      Navigation.push(componentId, {
+        component: {
+          name: 'wearbe.heightSlide',
+          options: {
+            topBar: {
+              title: {
+                text: '신장측정',
+              },
+            },
+          },
+          passProps: {},
+        },
+      });
     }
   };
 
@@ -148,5 +164,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+CameraScreen.propTypes = {
+  componentId: PropTypes.string,
+};
 
 export default CameraScreen;

@@ -25,6 +25,7 @@ function* getSizeCardsSaga() {
         sizeCardId: result.cards[0].id,
       });
     }
+
     yield put({
       type: GET_SIZE_CARD.SUCCESS,
       cards: result.cards,

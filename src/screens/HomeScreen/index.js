@@ -200,6 +200,7 @@ const HomeScreen = ({ componentId }) => {
           sizeCardAlertOpacity={sizeCardAlertOpacity}
           sizeCardAlertTop={sizeCardAlertTop}
         />
+
         <MasonryList
           images={items.toJS()}
           columns={2}

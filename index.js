@@ -18,16 +18,24 @@ import rootReducer from './src/reducers';
 import { rootSaga } from './src/sagas';
 
 import WelcomeScreen from './src/screens/WelcomeScreen';
-import WebViewScreen from './src/screens/WebViewScreen';
+// Auth Screens
 import PhoneVerifyScreen from './src/screens/PhoneVerifyScreen';
 import PasswordScreen from './src/screens/PasswordScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import SignInScreen from './src/screens/SignInScreen';
-import HomeScreen from './src/screens/HomeScreen';
-import CameraScreen from './src/screens/CameraScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
+
+// MainScreens
+import HomeScreen from './src/screens/HomeScreen';
 import SizeCardList from './src/screens/SizeCardList';
 import ItemDetailScreen from './src/screens/ItemDetailScreen';
+import WebViewScreen from './src/screens/WebViewScreen';
+
+// Body Measure Screen
+import CameraScreen from './src/screens/CameraScreen';
+import HeightSlideScreen from './src/screens/HeightSlideScreen';
+import PartialHeightScreen from './src/screens/PartialHeightSlideScreen';
+
 console.disableYellowBox = true;
 // Middleware: Redux Saga
 const sagaMiddleware = createSagaMiddleware();
@@ -97,10 +105,20 @@ Navigation.registerComponent(
   () => CameraScreen,
 );
 Navigation.registerComponent(
-  `wearbe.profile`,
-  () => ReduxProvider(ProfileScreen),
-  () => ProfileScreen,
+  `wearbe.heightSlide`,
+  () => ReduxProvider(HeightSlideScreen),
+  () => HeightSlideScreen,
 );
+Navigation.registerComponent(
+  'wearbe.partialHeightSlide',
+  () => ReduxProvider(PartialHeightScreen),
+  () => PartialHeightScreen,
+),
+  Navigation.registerComponent(
+    `wearbe.profile`,
+    () => ReduxProvider(ProfileScreen),
+    () => ProfileScreen,
+  );
 Navigation.registerComponent(
   `wearbe.sizeCardList`,
   () => ReduxProvider(SizeCardList),
