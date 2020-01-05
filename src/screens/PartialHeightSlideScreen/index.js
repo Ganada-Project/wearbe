@@ -667,10 +667,10 @@ export class PartialHeightSlideScreen extends Component {
         <HelpWrapper {...this.guideResponder.panHandlers}>
           <Icon name="question" type="font-awesome" color="#ffffff" size={25} />
         </HelpWrapper>
-        <GuideImage
+        {/* <GuideImage
           source={require('./images/shulderArmGuide.png')}
           style={guideOpacity}
-        />
+        /> */}
       </Container>
     );
   }

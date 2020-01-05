@@ -79,30 +79,33 @@ export class HeightSlideScreen extends Component {
       headPan: new Animated.ValueXY(),
       headOpacity: new Animated.Value(0.5),
       headGuideOpacity: new Animated.Value(0),
+
+      // 발
+      footPan: new Animated.ValueXY(),
+      footOpacity: new Animated.Value(0.5),
+      // 배꼽
+      bellyPan: new Animated.ValueXY(),
+      bellyOpacity: new Animated.Value(0.5),
+
+      footGuideOpacity: new Animated.Value(0),
+      bellyGuideOpacity: new Animated.Value(0),
+      // 가이드 투명도
+      guideOpacity: new Animated.Value(0),
     };
     Navigation.events().bindComponent(this);
 
-    // 발
-    this.footPan = new Animated.ValueXY();
-    this.footOpacity = new Animated.Value(0.5);
-    // 배꼽
-    this.bellyPan = new Animated.ValueXY();
-    this.bellyOpacity = new Animated.Value(0.5);
-
-    this.footGuideOpacity = new Animated.Value(0);
-    this.bellyGuideOpacity = new Animated.Value(0);
-    // 가이드 투명도
-    this.guideOpacity = new Animated.Value(0);
-
     const {
+      headOpacity,
+      headGuideOpacity,
+      headPan,
       footGuideOpacity,
       footOpacity,
+      footPan,
       bellyOpacity,
       bellyGuideOpacity,
+      bellyPan,
       guideOpacity,
-    } = this;
-
-    const { headOpacity, headGuideOpacity, headPan } = this.state;
+    } = this.state;
     // 가이드 버튼
     this.guideResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
@@ -179,11 +182,11 @@ export class HeightSlideScreen extends Component {
       onMoveShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponderCapture: () => true,
       onPanResponderGrant: () => {
-        this.footPan.setOffset({
-          // x: this.footPan.x._value,
-          y: this.footPan.y._value,
+        footPan.setOffset({
+          // x: footPan.x._value,
+          y: footPan.y._value,
         });
-        this.footPan.setValue({ x: 0, y: 0 });
+        footPan.setValue({ x: 0, y: 0 });
         Animated.parallel([
           Animated.timing(footOpacity, {
             toValue: 1,
@@ -197,7 +200,7 @@ export class HeightSlideScreen extends Component {
       onPanResponderMove: this.onDraggingFoot(),
       onPanResponderTerminationRequest: () => true,
       onPanResponderRelease: event => {
-        this.footPan.flattenOffset();
+        footPan.flattenOffset();
         Animated.parallel([
           Animated.timing(footOpacity, {
             toValue: 0.5,
@@ -224,9 +227,9 @@ export class HeightSlideScreen extends Component {
       onMoveShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponderCapture: () => true,
       onPanResponderGrant: () => {
-        this.bellyPan.setOffset({
-          x: this.bellyPan.x._value,
-          // y: this.bellyPan.y._value,
+        bellyPan.setOffset({
+          x: bellyPan.x._value,
+          // y: bellyPan.y._value,
         });
         Animated.parallel([
           Animated.timing(bellyOpacity, {
@@ -236,12 +239,12 @@ export class HeightSlideScreen extends Component {
             toValue: 1,
           }),
         ]).start();
-        this.bellyPan.setValue({ x: 0, y: 0 });
+        bellyPan.setValue({ x: 0, y: 0 });
       },
       onPanResponderMove: this.onDraggingBelly(),
       onPanResponderTerminationRequest: () => true,
       onPanResponderRelease: event => {
-        this.bellyPan.flattenOffset();
+        bellyPan.flattenOffset();
         Animated.parallel([
           Animated.timing(bellyOpacity, {
             toValue: 0.5,
@@ -269,12 +272,12 @@ export class HeightSlideScreen extends Component {
   };
 
   onDraggingFoot = () => {
-    const { footPan } = this;
+    const { footPan } = this.state;
     return Animated.event([null, { dy: footPan.y }]);
   };
 
   onDraggingBelly = () => {
-    const { bellyPan } = this;
+    const { bellyPan } = this.state;
     return Animated.event([null, { dx: bellyPan.x }]);
   };
 
@@ -305,18 +308,14 @@ export class HeightSlideScreen extends Component {
     const {
       footPan,
       bellyPan,
-      // footScale,
-      // reverseXValue,
-      // reverseYValue,
-
+      headPan,
+      headOpacity,
+      headGuideOpacity,
       footOpacity,
       bellyOpacity,
-
       footGuideOpacity,
       bellyGuideOpacity,
-    } = this;
-
-    const { headPan, headOpacity, headGuideOpacity } = this.state;
+    } = this.state;
 
     const { base64 } = this.props;
     const { typeText } = this.state;
@@ -353,7 +352,7 @@ export class HeightSlideScreen extends Component {
     };
 
     const guideOpacity = {
-      opacity: this.guideOpacity,
+      opacity: this.state.guideOpacity,
     };
 
     // const magnifierImageStyle = {
@@ -365,7 +364,7 @@ export class HeightSlideScreen extends Component {
 
     return (
       <Container>
-        {/* <ImageContainer
+        <ImageContainer
           imageStyle={{
             resizeMode: 'contain',
           }}
@@ -374,81 +373,80 @@ export class HeightSlideScreen extends Component {
             // uri:
             //   'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=962&q=80',
           }}
-        > */}
-        <StepHeader position={0} />
-        <Slider style={headSlide} {...this.headPanResponder.panHandlers}>
-          <SliderBar>
-            <Icon
-              type="antdesign"
-              name="caretup"
-              size={13}
-              color={theme.guideColor}
-              iconStyle={{ position: 'absolute', top: -14, left: 10 }}
-            />
-            <Icon
-              type="antdesign"
-              name="caretdown"
-              size={13}
-              color={theme.guideColor}
-              iconStyle={{ position: 'absolute', top: 3, left: 10 }}
-            />
-            <Sliderlabel>
-              <SliderlabelText>정수리</SliderlabelText>
-            </Sliderlabel>
-            <HeadGuideWrapper style={{ opacity: headGuideOpacity }}>
-              <PartGuideImage source={require('./images/headGuide.png')} />
-            </HeadGuideWrapper>
-          </SliderBar>
-        </Slider>
-        {/* <Slider style={footSlide} {...this.footPanResponder.panHandlers}>
-          <SliderBar>
-            <Icon
-              type="antdesign"
-              name="caretup"
-              size={13}
-              color={theme.guideColor}
-              iconStyle={{ position: 'absolute', top: -14, left: 10 }}
-            />
-            <Icon
-              type="antdesign"
-              name="caretdown"
-              size={13}
-              color={theme.guideColor}
-              iconStyle={{ position: 'absolute', top: 3, left: 10 }}
-            />
-            <Sliderlabel>
-              <SliderlabelText>발 끝</SliderlabelText>
-            </Sliderlabel>
-            <FootGuideWrapper style={{ opacity: footGuideOpacity }}>
-              <PartGuideImage source={require('./images/footGuide.png')} />
-            </FootGuideWrapper>
-          </SliderBar>
-        </Slider>
-        <BellySlider style={bellySlide} {...this.bellyPanResponder.panHandlers}>
-          <BellySliderBar>
-            <BellyLabel
-              style={{
-                left: -54,
-                top: BaseHeightOffset.foot - BaseHeightOffset.head,
-                transform: [{ rotate: '-90deg' }],
-              }}
-            >
-              <SliderlabelText>배꼽</SliderlabelText>
-            </BellyLabel>
-            <BellyGuideWrapper style={{ opacity: bellyGuideOpacity }}>
-              <PartGuideImage source={require('./images/bellyGuide.png')} />
-            </BellyGuideWrapper>
-          </BellySliderBar>
-        </BellySlider>
-        {/* </ImageContainer> */}
-        {/* <HelpWrapper {...this.guideResponder.panHandlers}>
+        >
+          <StepHeader position={0} />
+          <Slider style={headSlide} {...this.headPanResponder.panHandlers}>
+            <SliderBar>
+              <Icon
+                type="antdesign"
+                name="caretup"
+                size={13}
+                color={theme.guideColor}
+                iconStyle={{ position: 'absolute', top: -14, left: 10 }}
+              />
+              <Icon
+                type="antdesign"
+                name="caretdown"
+                size={13}
+                color={theme.guideColor}
+                iconStyle={{ position: 'absolute', top: 3, left: 10 }}
+              />
+              <Sliderlabel>
+                <SliderlabelText>정수리</SliderlabelText>
+              </Sliderlabel>
+              <HeadGuideWrapper style={{ opacity: headGuideOpacity }}>
+                <PartGuideImage source={require('./images/headGuide.png')} />
+              </HeadGuideWrapper>
+            </SliderBar>
+          </Slider>
+          <Slider style={footSlide} {...this.footPanResponder.panHandlers}>
+            <SliderBar>
+              <Icon
+                type="antdesign"
+                name="caretup"
+                size={13}
+                color={theme.guideColor}
+                iconStyle={{ position: 'absolute', top: -14, left: 10 }}
+              />
+              <Icon
+                type="antdesign"
+                name="caretdown"
+                size={13}
+                color={theme.guideColor}
+                iconStyle={{ position: 'absolute', top: 3, left: 10 }}
+              />
+              <Sliderlabel>
+                <SliderlabelText>발 끝</SliderlabelText>
+              </Sliderlabel>
+              <FootGuideWrapper style={{ opacity: footGuideOpacity }}>
+                <PartGuideImage source={require('./images/footGuide.png')} />
+              </FootGuideWrapper>
+            </SliderBar>
+          </Slider>
+          <BellySlider
+            style={bellySlide}
+            {...this.bellyPanResponder.panHandlers}
+          >
+            <BellySliderBar>
+              <BellyLabel
+                style={{
+                  left: -54,
+                  top: BaseHeightOffset.foot - BaseHeightOffset.head,
+                  transform: [{ rotate: '-90deg' }],
+                }}
+              >
+                <SliderlabelText>배꼽</SliderlabelText>
+              </BellyLabel>
+              <BellyGuideWrapper style={{ opacity: bellyGuideOpacity }}>
+                <PartGuideImage source={require('./images/bellyGuide.png')} />
+              </BellyGuideWrapper>
+            </BellySliderBar>
+          </BellySlider>
+        </ImageContainer>
+        <HelpWrapper {...this.guideResponder.panHandlers}>
           <Icon name="question" type="font-awesome" color="#ffffff" size={25} />
         </HelpWrapper>
-        <GuideImage
-          source={require('./images/shulderArmGuide.png')}
-          style={guideOpacity}
-        />
-       */}
+        {/* <GuideImage source={require('./images/shulderArmGuide.png')} /> */}
       </Container>
     );
   }
