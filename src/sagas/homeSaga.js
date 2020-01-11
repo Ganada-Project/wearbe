@@ -1,6 +1,6 @@
 import { call, put, takeLatest, all, take } from 'redux-saga/effects';
 import { Navigation } from 'react-native-navigation';
-import { getRequest, postRequest } from '../utils/request';
+import { getRequest } from '../utils/request';
 import { API_URL } from '../constants';
 import {
   GET_SIZE_CARD,

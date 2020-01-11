@@ -421,7 +421,7 @@ export class PartialHeightSlideScreen extends Component {
       } = this.state;
       Navigation.push(componentId, {
         component: {
-          name: 'wave.upperBodyWidthSlide',
+          name: 'wearbe.upperBodyWidthSlide',
           passProps: {
             height,
             weight,
@@ -508,10 +508,6 @@ export class PartialHeightSlideScreen extends Component {
       top: ANKLE_OFFSET.y,
       opacity: ankleOpacity,
       // top: 0,
-    };
-
-    const guideOpacity = {
-      opacity: this.guideOpacity,
     };
 
     // const magnifierImageStyle = {

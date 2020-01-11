@@ -7,7 +7,7 @@
  */
 
 import React, { useEffect } from 'react';
-import { SafeAreaView, StatusBar, View } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import { setCustomText } from 'react-native-global-props';
 
 import { useDispatch, useSelector } from 'react-redux';

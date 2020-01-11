@@ -77,16 +77,12 @@ const HomeScreen = ({ componentId }) => {
   const [sizeCardAlertTop] = useState(new Animated.Value(-20));
   const [sizeCardAlertOpacity] = useState(new Animated.Value(0));
 
-  console.log(sizeCardAlertOpacity);
-  console.log(sizeCardAlertTop);
-
   useEffect(() => {
     dispatch(getSizeCardRequestAction());
   }, []);
 
   useEffect(() => {
     if (selectedSizeCard.get('id')) {
-      console.log('sizeCardChanged!');
       alertSizeCardChanged();
     }
   }, [selectedSizeCard]);
