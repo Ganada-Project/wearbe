@@ -132,7 +132,7 @@ export const Sliderlabel = styled.View`
   justify-content: center;
   align-items: center;
   left: 35;
-  top: -28;
+  top: -29;
   width: 80px;
   height: 30px;
   background-color: ${theme.guideColor};
@@ -141,7 +141,7 @@ export const Sliderlabel = styled.View`
 `;
 
 export const SliderlabelText = styled.Text`
-  color: ${theme.textColor};
+  color: ${theme.whiteColor};
   font-weight: bold;
 `;
 

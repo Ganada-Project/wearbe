@@ -77,15 +77,15 @@ export class HeightSlideScreen extends Component {
         y: 0,
       },
       headPan: new Animated.ValueXY(),
-      headOpacity: new Animated.Value(0.5),
+      headOpacity: new Animated.Value(0.8),
       headGuideOpacity: new Animated.Value(0),
 
       // 발
       footPan: new Animated.ValueXY(),
-      footOpacity: new Animated.Value(0.5),
+      footOpacity: new Animated.Value(0.8),
       // 배꼽
       bellyPan: new Animated.ValueXY(),
-      bellyOpacity: new Animated.Value(0.5),
+      bellyOpacity: new Animated.Value(0.8),
 
       footGuideOpacity: new Animated.Value(0),
       bellyGuideOpacity: new Animated.Value(0),
@@ -159,7 +159,7 @@ export class HeightSlideScreen extends Component {
         headPan.flattenOffset();
         Animated.parallel([
           Animated.timing(headOpacity, {
-            toValue: 0.5,
+            toValue: 0.8,
           }),
           Animated.timing(headGuideOpacity, {
             toValue: 0,
@@ -203,7 +203,7 @@ export class HeightSlideScreen extends Component {
         footPan.flattenOffset();
         Animated.parallel([
           Animated.timing(footOpacity, {
-            toValue: 0.5,
+            toValue: 0.8,
           }),
           Animated.timing(footGuideOpacity, {
             toValue: 0,
@@ -247,7 +247,7 @@ export class HeightSlideScreen extends Component {
         bellyPan.flattenOffset();
         Animated.parallel([
           Animated.timing(bellyOpacity, {
-            toValue: 0.5,
+            toValue: 0.8,
           }),
           Animated.timing(bellyGuideOpacity, {
             toValue: 0,
@@ -366,7 +366,8 @@ export class HeightSlideScreen extends Component {
       <Container>
         <ImageContainer
           imageStyle={{
-            resizeMode: 'contain',
+            resizeMode: 'cover',
+            opacity: 0.7,
           }}
           source={{
             uri: `data:image/gif;base64,${base64}`,

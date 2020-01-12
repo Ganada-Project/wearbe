@@ -10,7 +10,7 @@ export const theme = {
   darkGray: '#88929c',
   dimGray: '#696969',
   textColor: '#111314',
-  guideColor: '#14ff1e',
+  guideColor: '#2044f9',
   backgroundColor: '#f9f7f9',
 };
 

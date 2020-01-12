@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components';
-import { theme, TopBarHeight } from '../../constants';
+import { theme, TopBarHeight, layout } from '../../constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -28,6 +28,11 @@ const styles = StyleSheet.create({
 });
 
 export default styles;
+
+export const Wrapper = styled.View`
+  flex: 1;
+  padding: ${layout.keyboardPadding};
+`;
 
 export const HeightWeightWrapper = styled.View`
   width: 100%;
