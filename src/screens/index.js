@@ -23,6 +23,7 @@ import ItemDetailScreen from './ItemDetailScreen';
 import WebViewScreen from './WebViewScreen';
 
 // Body Measure Screen
+import BodySizeScreen from './BodySizeScreen';
 import CameraScreen from './CameraScreen';
 import HeightSlideScreen from './HeightSlideScreen';
 import PartialHeightScreen from './PartialHeightSlideScreen';
@@ -103,6 +104,11 @@ export const registerScreens = () => {
     `wearbe.itemDetail`,
     () => ReduxProvider(ItemDetailScreen),
     () => ItemDetailScreen,
+  );
+  Navigation.registerComponent(
+    `wearbe.bodySize`,
+    () => ReduxProvider(BodySizeScreen),
+    () => BodySizeScreen,
   );
   Navigation.registerComponent(
     `wearbe.camera`,

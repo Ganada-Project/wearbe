@@ -105,49 +105,49 @@ export class SizeCardInfoScreen extends Component {
         <Wrapper>
           <View style={styles.header}>
             <Text style={styles.header__title}>기본 신체정보</Text>
-            <View style={styles.body}>
-              <RegisterForm
-                label="사이즈카드 이름"
-                onChangeText={text => this.setState({ sizeCardName: text })}
-              />
-              {!isMe ? (
-                <>
-                  <RegisterForm
-                    label="나이"
-                    keyboardType="numeric"
-                    autoFocus={false}
-                    onChangeText={text => this.setState({ age: text })}
-                  />
-                  <View style={{ flexDirection: 'row' }}>
-                    {genderData.map(gender => (
-                      <GenderBox
-                        onPress={this.handleGender}
-                        icon={gender.icon}
-                        iconWhite={gender.iconWhite}
-                        id={gender.id}
-                        selectedGenderId={selectedGenderId}
-                        key={`gender-${gender.id}`}
-                        name={gender.name}
-                        divider={6.5}
-                      />
-                    ))}
-                  </View>
-                </>
-              ) : null}
-            </View>
-            <View style={styles.footer}>
-              <FullWidthButton
-                disabled={
-                  isMe
-                    ? !!sizeCardName === ''
-                    : !!sizeCardName === '' ||
-                      age === '' ||
-                      selectedGenderId === null
-                }
-                onPress={this.navigateToFinalRegister}
-                content="다음 단계"
-              />
-            </View>
+          </View>
+          <View style={styles.body}>
+            <RegisterForm
+              label="사이즈카드 이름"
+              onChangeText={text => this.setState({ sizeCardName: text })}
+            />
+            {!isMe ? (
+              <>
+                <RegisterForm
+                  label="나이"
+                  keyboardType="numeric"
+                  autoFocus={false}
+                  onChangeText={text => this.setState({ age: text })}
+                />
+                <View style={{ flexDirection: 'row' }}>
+                  {genderData.map(gender => (
+                    <GenderBox
+                      onPress={this.handleGender}
+                      icon={gender.icon}
+                      iconWhite={gender.iconWhite}
+                      id={gender.id}
+                      selectedGenderId={selectedGenderId}
+                      key={`gender-${gender.id}`}
+                      name={gender.name}
+                      divider={6.5}
+                    />
+                  ))}
+                </View>
+              </>
+            ) : null}
+          </View>
+          <View style={styles.footer}>
+            <FullWidthButton
+              disabled={
+                isMe
+                  ? !!sizeCardName === ''
+                  : !!sizeCardName === '' ||
+                    age === '' ||
+                    selectedGenderId === null
+              }
+              onPress={this.navigateToFinalRegister}
+              content="다음 단계"
+            />
           </View>
         </Wrapper>
       </KeyboardWrapper>

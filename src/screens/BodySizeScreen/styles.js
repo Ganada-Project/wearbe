@@ -1,18 +1,13 @@
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components';
-import { theme, TopBarHeight } from '../../constants';
+import { theme, layout } from '../../constants';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 25,
-    paddingTop: TopBarHeight,
-  },
   header: {
     flex: 0.2,
   },
   body: {
-    flex: 1.5,
+    flex: 1,
   },
   header__title: {
     fontSize: 20,
@@ -21,13 +16,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   footer: {
-    flex: 0.2,
+    flex: 0.3,
     alignItems: 'center',
     justifyContent: 'center',
   },
 });
 
 export default styles;
+
+export const Wrapper = styled.View`
+  flex: 1;
+  padding: ${layout.keyboardPadding};
+`;
 
 export const HeightWeightWrapper = styled.View`
   width: 100%;

@@ -27,7 +27,7 @@ import {
   DisableButton,
 } from './styles';
 
-const CameraScreen = ({ componentId }) => {
+const CameraScreen = ({ componentId, height, weight }) => {
   const [pitch, setPitch] = useState(0);
   const [textOpacityLoop] = useState(new Animated.Value(0));
   const cameraRef = createRef();
@@ -53,7 +53,6 @@ const CameraScreen = ({ componentId }) => {
     if (cameraRef.current) {
       const options = { quality: 0.5, base64: true };
       const data = await cameraRef.current.takePictureAsync(options);
-      console.log(data.uri);
       Navigation.push(componentId, {
         component: {
           name: 'wearbe.heightSlide',
@@ -64,7 +63,11 @@ const CameraScreen = ({ componentId }) => {
               },
             },
           },
-          passProps: {},
+          passProps: {
+            base64: data.uri,
+            height,
+            weight,
+          },
         },
       });
     }
@@ -167,6 +170,8 @@ const styles = StyleSheet.create({
 
 CameraScreen.propTypes = {
   componentId: PropTypes.string,
+  height: PropTypes.string,
+  weight: PropTypes.string,
 };
 
 export default CameraScreen;

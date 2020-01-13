@@ -266,7 +266,6 @@ export class HeightSlideScreen extends Component {
   }
 
   onDraggingHead = () => {
-    console.log('dragging');
     const { headPan } = this.state;
     return Animated.event([null, { dy: headPan.y }]);
   };

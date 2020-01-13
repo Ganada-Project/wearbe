@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     flex: 0.2,
   },
   body: {
-    flex: 1.5,
+    flex: 1,
   },
   header__title: {
     fontSize: 20,
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   footer: {
-    flex: 0.2,
+    flex: 0.3,
     alignItems: 'center',
     justifyContent: 'center',
   },

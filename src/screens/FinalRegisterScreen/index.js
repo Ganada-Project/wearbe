@@ -9,7 +9,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // react-native
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 import { BarIndicator } from 'react-native-indicators';
 
@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { postSizeCardAction } from '../../actions/sizeCardActions';
 
 import { theme } from '../../constants';
+import { useNavigationComponentDidAppear } from 'react-native-navigation-hooks/dist';
 
 const FinalRegisterScreen = ({
   gender,
@@ -50,8 +51,7 @@ const FinalRegisterScreen = ({
   const dispatch = useDispatch();
   const globalState = useSelector(state => state.get('global'));
   const user = globalState.get('userData');
-  console.log(user.toJS());
-  useEffect(() => {
+  useNavigationComponentDidAppear(() => {
     dispatch(
       postSizeCardAction({
         gender: gender || user.get('gender'),
@@ -148,7 +148,8 @@ const FinalRegisterScreen = ({
         isMe,
       }),
     );
-  }, []);
+  });
+
   return (
     <View
       style={{
@@ -159,29 +160,29 @@ const FinalRegisterScreen = ({
       }}
     >
       {/* <Text>{`성: ${gender || user.get('gender')}`}</Text>
-    <Text>{`사이즈카드이름: ${sizeCardName}`}</Text>
-    <Text>{`키: ${height}`}</Text>
-    <Text>{`체중: ${weight}`}</Text>
-    <Text>{`나이: ${age || user.get('age')}`}</Text>
-    <Text>{`머리: ${headOffsetY}`}</Text>
-    <Text>{`발: ${footOffsetY}`}</Text>
-    <Text>{`배꼽x: ${bellyOffsetX}`}</Text>
-    <Text>{`어깨y: ${shoulderOffsetY}`}</Text>
-    <Text>{`골반y: ${pelvisOffsetY}`}</Text>
-    <Text>{`손목: ${wristOffsetY}`}</Text>
-    <Text>{`밑위y: ${crotchOffsetY}`}</Text>
-    <Text>{`발목y:  ${ankleOffsetY}`}</Text>
-    <Text>{`왼쪽어깨X: ${leftShulderOffsetX}`}</Text>
-    <Text>{`오른쪽어깨X: ${rightShulderOffsetX}`}</Text>
-    <Text>{`왼쪽가슴X: ${leftChestOffsetX}`}</Text>
-    <Text>{`오른쪽가슴X: ${rightChestOffsetX}`}</Text>
-    <Text>{`왼쪽골반X: ${leftPelvisOffsetX}`}</Text>
-    <Text>{`오른쪽골반X: ${rightPelvisOffsetX}`}</Text>
-    <Text>{`왼쪽허리X: ${leftWaistOffsetX}`}</Text>
-    <Text>{`오른쪽허리X: ${rightWaistOffsetX}`}</Text>
-    <Text>{`왼쪽허벅지X: ${leftThighOffsetX}`}</Text>
-    <Text>{`오른쪽허벅지X: ${rightThighOffsetX}`}</Text> */}
-      <BarIndicator size={40} color={theme.pointColor} count={6} />
+      <Text>{`사이즈카드이름: ${sizeCardName}`}</Text>
+      <Text>{`키: ${height}`}</Text>
+      <Text>{`체중: ${weight}`}</Text>
+      <Text>{`나이: ${age || user.get('age')}`}</Text>
+      <Text>{`머리: ${headOffsetY}`}</Text>
+      <Text>{`발: ${footOffsetY}`}</Text>
+      <Text>{`배꼽x: ${bellyOffsetX}`}</Text>
+      <Text>{`어깨y: ${shoulderOffsetY}`}</Text>
+      <Text>{`골반y: ${pelvisOffsetY}`}</Text>
+      <Text>{`손목: ${wristOffsetY}`}</Text>
+      <Text>{`밑위y: ${crotchOffsetY}`}</Text>
+      <Text>{`발목y:  ${ankleOffsetY}`}</Text>
+      <Text>{`왼쪽어깨X: ${leftShulderOffsetX}`}</Text>
+      <Text>{`오른쪽어깨X: ${rightShulderOffsetX}`}</Text>
+      <Text>{`왼쪽가슴X: ${leftChestOffsetX}`}</Text>
+      <Text>{`오른쪽가슴X: ${rightChestOffsetX}`}</Text>
+      <Text>{`왼쪽골반X: ${leftPelvisOffsetX}`}</Text>
+      <Text>{`오른쪽골반X: ${rightPelvisOffsetX}`}</Text>
+      <Text>{`왼쪽허리X: ${leftWaistOffsetX}`}</Text>
+      <Text>{`오른쪽허리X: ${rightWaistOffsetX}`}</Text>
+      <Text>{`왼쪽허벅지X: ${leftThighOffsetX}`}</Text>
+      <Text>{`오른쪽허벅지X: ${rightThighOffsetX}`}</Text> */}
+      <BarIndicator size={30} color={theme.pointColor} count={6} />
     </View>
   );
 };

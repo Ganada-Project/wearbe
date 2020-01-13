@@ -1,17 +1,12 @@
 import { Navigation } from 'react-native-navigation';
 import randomColor from 'randomcolor';
 import { call, put, takeLatest, all } from 'redux-saga/effects';
-import {
-  POST_SIZE_CARD_REQUESTING,
-  POST_SIZE_CARD_REQUESTING_FAIL,
-  POST_SIZE_CARD_REQUESTING_SUCCESS,
-} from '../constants/SizeCardConstants';
+import { POST_SIZE_CARD } from '../constants/SizeCardConstants';
 import { API_URL, theme } from '../constants';
 import { postRequest } from '../utils/request';
 
 function* postSizeCardSaga(action) {
   const url = `${API_URL}/card`;
-
   const {
     weight,
     sizeCardName,
@@ -39,7 +34,8 @@ function* postSizeCardSaga(action) {
     rightThighOffset,
     rightAnkleOffset,
     isMe,
-  } = action.payload;
+  } = action;
+  console.log('saga');
   const cardColor = randomColor({
     luminosity: 'light',
     hue: theme.subColor,
@@ -82,14 +78,14 @@ function* postSizeCardSaga(action) {
   try {
     console.log(payload);
     const result = yield call(postRequest, { url, payload });
-    yield put({ type: POST_SIZE_CARD_REQUESTING_SUCCESS, payload: { result } });
+    yield put({ type: POST_SIZE_CARD.SUCCESS, payload: { result } });
     yield Navigation.setRoot({
       root: {
         stack: {
           children: [
             {
               component: {
-                name: 'wave.home',
+                name: 'wearbe.home',
               },
             },
           ],
@@ -98,10 +94,10 @@ function* postSizeCardSaga(action) {
     });
   } catch (error) {
     console.log(error);
-    yield put({ type: POST_SIZE_CARD_REQUESTING_FAIL, error });
+    yield put({ type: POST_SIZE_CARD.FAIL, error });
   }
 }
 
 export default function* sizeCardSaga() {
-  yield all([takeLatest(POST_SIZE_CARD_REQUESTING, postSizeCardSaga)]);
+  yield all([takeLatest(POST_SIZE_CARD.REQUEST, postSizeCardSaga)]);
 }

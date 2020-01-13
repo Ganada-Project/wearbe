@@ -115,11 +115,11 @@ const HomeScreen = ({ componentId }) => {
   const navigateToPoseInfo = () => {
     Navigation.push(componentId, {
       component: {
-        name: 'wearbe.camera',
+        name: 'wearbe.bodySize',
         options: {
           topBar: {
             title: {
-              text: '신체촬영',
+              text: '기본정보',
             },
           },
         },
