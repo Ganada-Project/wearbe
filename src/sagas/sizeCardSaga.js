@@ -33,9 +33,10 @@ function* postSizeCardSaga(action) {
     leftAnkleOffset,
     rightThighOffset,
     rightAnkleOffset,
+    crotchOffset,
     isMe,
   } = action;
-  console.log('saga');
+
   const cardColor = randomColor({
     luminosity: 'light',
     hue: theme.subColor,
@@ -67,6 +68,7 @@ function* postSizeCardSaga(action) {
       leftAnkle: leftAnkleOffset,
       rightThigh: rightThighOffset,
       rightAnkle: rightAnkleOffset,
+      crotch: crotchOffset,
     },
     bodyShape: 'f',
     preferColor: '#ffffff',
@@ -76,9 +78,9 @@ function* postSizeCardSaga(action) {
     mine: isMe ? 1 : 0,
   };
   try {
-    console.log(payload);
+    console.log(JSON.stringify(payload));
     const result = yield call(postRequest, { url, payload });
-    yield put({ type: POST_SIZE_CARD.SUCCESS, payload: { result } });
+    yield put({ type: POST_SIZE_CARD.SUCCESS, result });
     yield Navigation.setRoot({
       root: {
         stack: {

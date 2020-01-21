@@ -16,10 +16,10 @@ import { BarIndicator } from 'react-native-indicators';
 import { useDispatch, useSelector } from 'react-redux';
 
 // local action
+import { useNavigationComponentDidAppear } from 'react-native-navigation-hooks/dist';
 import { postSizeCardAction } from '../../actions/sizeCardActions';
 
 import { theme } from '../../constants';
-import { useNavigationComponentDidAppear } from 'react-native-navigation-hooks/dist';
 
 const FinalRegisterScreen = ({
   gender,
@@ -51,7 +51,7 @@ const FinalRegisterScreen = ({
   const dispatch = useDispatch();
   const globalState = useSelector(state => state.get('global'));
   const user = globalState.get('userData');
-  useNavigationComponentDidAppear(() => {
+  useEffect(() => {
     dispatch(
       postSizeCardAction({
         gender: gender || user.get('gender'),
@@ -148,7 +148,7 @@ const FinalRegisterScreen = ({
         isMe,
       }),
     );
-  });
+  }, []);
 
   return (
     <View
